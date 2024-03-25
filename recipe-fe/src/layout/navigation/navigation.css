@@ -1,0 +1,55 @@
+.nav {
+    width: screen;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+.nav-left {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    height: 100%;
+    padding-top: 30px;
+}
+.register-nav {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    color: #2e266f;
+    border: none;
+    background: transparent;
+    text-decoration: none;
+}
+.search-register-nav:hover,
+.search-register-nav:focus {
+    color: #1a144b;
+}
+
+.login-nav {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    color: #2e266f;
+    text-decoration: none;
+}
+.search-login-nav:hover,
+.search-login-nav:focus {
+    color: #1a144b;
+}
+
+.search-menu-nav {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    color: #2e266f;
+    text-decoration: none;
+}
+.search-menu-nav:hover,
+.search-menu-nav:focus {
+    color: #1a144b;
+}
