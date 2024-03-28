@@ -11,29 +11,30 @@ import grid4 from "../assets/grid4.png";
 import grid5 from "../assets/grid5.png";
 import grid6 from "../assets/grid6.png";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 export default function LandingPage() {
     return (
         <>
-            <main className="main">
-                <nav className="navbar">
-                    <div className="nav-left">
-                        <Link className="register-nav" to="/register">
+            <main className="main-landingPage">
+                <nav className="navbar-landingPage">
+                    <div className="nav-left-landingPage">
+                        <Link
+                            className="register-nav-landingPage"
+                            to="/register"
+                        >
                             Register
                         </Link>
-                        <Link className="login-nav" to="/login">
+                        <Link className="login-nav-landingPage" to="/login">
                             Login
                         </Link>
-                        <a
-                            className="search-menu-nav"
-                            href="../auth-page/login.html"
-                        >
+                        <Link className="search-menu-nav-landingPage" to={"#"}>
                             Search Menu
-                        </a>
+                        </Link>
                     </div>
-                    <div className="nav-rigth" />
+                    <div className="nav-rigth-landingPage" />
                 </nav>
-                <section className="section">
+                <section className="section-landingPage">
                     <div>
                         <h1
                             style={{
@@ -61,7 +62,7 @@ export default function LandingPage() {
                         />
                     </div>
                 </section>
-                <aside className="aside">
+                <aside className="aside-landingPage">
                     <div
                         style={{
                             marginTop: 100,
@@ -84,7 +85,7 @@ export default function LandingPage() {
                             Popular For You !
                         </h1>
                     </div>
-                    <div className="card-aside">
+                    <div className="card-aside-landingPage">
                         <div>
                             <img
                                 style={{
@@ -157,7 +158,7 @@ export default function LandingPage() {
                         </div>
                     </div>
                 </aside>
-                <aside className="aside2">
+                <aside className="aside2-landingPage">
                     <div
                         style={{
                             marginTop: 100,
@@ -180,7 +181,7 @@ export default function LandingPage() {
                             New Recipe
                         </h1>
                     </div>
-                    <div className="card-aside">
+                    <div className="card-aside-landingPage">
                         <div>
                             <img
                                 style={{
@@ -253,7 +254,7 @@ export default function LandingPage() {
                         </div>
                     </div>
                 </aside>
-                <aside className="aside3">
+                <aside className="aside3-landingPage">
                     <div
                         style={{
                             marginTop: 100,
@@ -276,9 +277,9 @@ export default function LandingPage() {
                             Popular Recipe
                         </h1>
                     </div>
-                    <div className="grid-container">
+                    <div className="grid-container-landingPage">
                         <div
-                            className="grid-item"
+                            className="grid-item-landingPage"
                             style={{
                                 backgroundImage: `url(${grid1})`,
                                 backgroundSize: "cover",
@@ -290,7 +291,7 @@ export default function LandingPage() {
                             </h1>
                         </div>
                         <div
-                            className="grid-item"
+                            className="grid-item-landingPage"
                             style={{
                                 backgroundImage: `url(${grid2})`,
                                 backgroundSize: "cover",
@@ -302,7 +303,7 @@ export default function LandingPage() {
                             </h1>
                         </div>
                         <div
-                            className="grid-item"
+                            className="grid-item-landingPage"
                             style={{
                                 backgroundImage: `url(${grid3})`,
                                 backgroundSize: "cover",
@@ -314,7 +315,7 @@ export default function LandingPage() {
                             </h1>
                         </div>
                         <div
-                            className="grid-item"
+                            className="grid-item-landingPage"
                             style={{
                                 backgroundImage: `url(${grid4})`,
                                 backgroundSize: "cover",
@@ -326,7 +327,7 @@ export default function LandingPage() {
                             </h1>
                         </div>
                         <div
-                            className="grid-item"
+                            className="grid-item-landingPage"
                             style={{
                                 backgroundImage: `url(${grid5})`,
                                 backgroundSize: "cover",
@@ -338,7 +339,7 @@ export default function LandingPage() {
                             </h1>
                         </div>
                         <div
-                            className="grid-item"
+                            className="grid-item-landingPage"
                             style={{
                                 backgroundImage: `url(${grid6})`,
                                 backgroundSize: "cover",
@@ -352,6 +353,7 @@ export default function LandingPage() {
                     </div>
                 </aside>
             </main>
+            <Footer />
         </>
     );
 }

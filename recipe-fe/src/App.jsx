@@ -11,6 +11,9 @@ import DetailRecipe from "./pages/DetailRecipe";
 import AddRecipe from "./pages/AddRecipe";
 import EditRecipe from "./pages/EditRecipe";
 import DetailProfile from "./pages/DetailProfile";
+import BookmarkProfile from "./pages/BookmarkProfile";
+import EditProfile from "./pages/EditProfile";
+import ChangePassword from "./pages/ChangePassword";
 
 function App() {
     return (
@@ -30,6 +33,15 @@ function App() {
                     <Route path="/addRecipe" element={<AddRecipe />} />
                     <Route path="/editRecipe" element={<EditRecipe />} />
                     <Route path="/detailProfile" element={<DetailProfile />} />
+                    <Route
+                        path="/bookmarkProfile"
+                        element={<BookmarkProfile />}
+                    />
+                    <Route path="/editProfile" element={<EditProfile />} />
+                    <Route
+                        path="/changePassword"
+                        element={<ChangePassword />}
+                    />
                 </Routes>
             </BrowserRouter>
         </>

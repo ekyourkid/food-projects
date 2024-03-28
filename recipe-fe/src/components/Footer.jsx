@@ -25,7 +25,13 @@ export default function Footer() {
                         <h1>Get In Touch</h1>
                     </div>
                 </section>
-                <section style={{ display: "flex", justifyContent: "end" }}>
+                <section
+                    style={{
+                        display: "flex",
+                        justifyContent: "end",
+                        marginBottom: 20,
+                    }}
+                >
                     <h1 style={{ fontSize: 16, fontWeight: 500 }}>Arkademy</h1>
                 </section>
             </main>

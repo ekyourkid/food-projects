@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import "./forgotPassword.css";
+import { Link } from "react-router-dom";
 
 export default function ForgoPassword() {
     return (
@@ -54,7 +55,7 @@ export default function ForgoPassword() {
                     }}
                 >
                     <div className="mb-3">
-                        <label
+                        <h1
                             style={{
                                 fontWeight: 500,
                                 fontSize: 16,
@@ -64,7 +65,7 @@ export default function ForgoPassword() {
                             className="form-label"
                         >
                             Email
-                        </label>
+                        </h1>
                         <input
                             type="email"
                             className="form-control"
@@ -80,13 +81,13 @@ export default function ForgoPassword() {
                         marginTop: 20,
                     }}
                 >
-                    <a
+                    <Link
                         style={{ textDecoration: "none" }}
-                        href="./forgot-pass.html"
+                        to="/changePassword"
                         className="button-regist"
                     >
                         Send OTP
-                    </a>
+                    </Link>
                 </span>
                 <span className="forgot-sect">
                     <h1
@@ -97,13 +98,13 @@ export default function ForgoPassword() {
                         }}
                     >
                         Login instead?
-                        <a
+                        <Link
                             style={{ textDecoration: "none" }}
-                            href="./login.html"
+                            to="/login"
                             className="forgot-button"
                         >
                             Click here
-                        </a>
+                        </Link>
                     </h1>
                 </span>
             </div>

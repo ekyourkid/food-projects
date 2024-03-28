@@ -1,11 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import "./login.css";
+import { Link } from "react-router-dom";
 
 export default function LoginPage() {
     return (
         <main className="login-main">
-            <div className="cover">
+            <div className="cover-main">
                 <div className="header-cover">
                     <span className="span1">
                         <h1
@@ -54,7 +55,7 @@ export default function LoginPage() {
                     }}
                 >
                     <div className="mb-3">
-                        <label
+                        <h1
                             style={{
                                 fontWeight: 500,
                                 fontSize: 16,
@@ -64,7 +65,7 @@ export default function LoginPage() {
                             className="form-label"
                         >
                             Email
-                        </label>
+                        </h1>
                         <input
                             type="email"
                             className="form-control"
@@ -73,7 +74,7 @@ export default function LoginPage() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label
+                        <h1
                             style={{
                                 fontWeight: 500,
                                 fontSize: 16,
@@ -83,7 +84,7 @@ export default function LoginPage() {
                             className="form-label"
                         >
                             Password
-                        </label>
+                        </h1>
                         <input
                             type="password"
                             className="form-control"
@@ -99,15 +100,12 @@ export default function LoginPage() {
                         defaultValue=""
                         id="flexCheckDefault"
                     />
-                    <label
-                        className="form-check-label"
-                        htmlFor="flexCheckDefault"
-                    >
+                    <h1 className="form-check-label" htmlFor="flexCheckDefault">
                         I agree to terms &amp; conditions
-                    </label>
+                    </h1>
                 </div>
-                <a
-                    href="../menu-page/searchMenu.html"
+                <Link
+                    to="/home"
                     style={{
                         display: "flex",
                         justifyContent: "center",
@@ -115,7 +113,7 @@ export default function LoginPage() {
                     }}
                 >
                     <button className="button-regist">Login</button>
-                </a>
+                </Link>
                 <span className="forgot-sect">
                     <h1
                         style={{
@@ -125,13 +123,13 @@ export default function LoginPage() {
                         }}
                     >
                         Forgot your Password?
-                        <a
+                        <Link
                             style={{ textDecoration: "none" }}
-                            href="./email-form.html"
+                            to="/forgotPassword"
                             className="forgot-button"
                         >
                             Click here
-                        </a>
+                        </Link>
                     </h1>
                 </span>
                 <div
@@ -142,15 +140,21 @@ export default function LoginPage() {
                         height: 100,
                     }}
                 >
-                    <h1 style={{ fontWeight: 500, fontSize: 13 }}>
+                    <h1
+                        style={{
+                            fontWeight: 500,
+                            fontSize: 13,
+                            color: "#999999",
+                        }}
+                    >
                         Dont have an account?
-                        <a
+                        <Link
                             style={{ textDecoration: "none" }}
-                            href="./register.html"
+                            to="/register"
                             className="button-login"
                         >
                             Sign Up
-                        </a>
+                        </Link>
                     </h1>
                 </div>
             </div>

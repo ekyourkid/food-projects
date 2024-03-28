@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import "./regist.css";
+import { Link } from "react-router-dom";
 
 export default function RegistPage() {
     return (
@@ -55,7 +56,7 @@ export default function RegistPage() {
                         }}
                     >
                         <div className="mb-3">
-                            <label
+                            <h1
                                 style={{
                                     fontWeight: 500,
                                     fontSize: 16,
@@ -65,7 +66,7 @@ export default function RegistPage() {
                                 className="form-label"
                             >
                                 Name
-                            </label>
+                            </h1>
                             <input
                                 type="name"
                                 className="form-control"
@@ -74,7 +75,7 @@ export default function RegistPage() {
                             />
                         </div>
                         <div className="mb-3">
-                            <label
+                            <h1
                                 style={{
                                     fontWeight: 500,
                                     fontSize: 16,
@@ -84,7 +85,7 @@ export default function RegistPage() {
                                 className="form-label"
                             >
                                 Email
-                            </label>
+                            </h1>
                             <input
                                 type="email"
                                 className="form-control"
@@ -93,7 +94,7 @@ export default function RegistPage() {
                             />
                         </div>
                         <div className="mb-3">
-                            <label
+                            <h1
                                 style={{
                                     fontWeight: 500,
                                     fontSize: 16,
@@ -103,7 +104,7 @@ export default function RegistPage() {
                                 className="form-label"
                             >
                                 Password
-                            </label>
+                            </h1>
                             <input
                                 type="password"
                                 className="form-control"
@@ -119,12 +120,12 @@ export default function RegistPage() {
                             defaultValue=""
                             id="flexCheckDefault"
                         />
-                        <label
+                        <h1
                             className="form-check-label"
                             htmlFor="flexCheckDefault"
                         >
                             I agree to terms &amp; conditions
-                        </label>
+                        </h1>
                     </div>
                     <div
                         style={{
@@ -145,15 +146,21 @@ export default function RegistPage() {
                             height: 100,
                         }}
                     >
-                        <h1 style={{ fontWeight: 500, fontSize: 13 }}>
+                        <h1
+                            style={{
+                                fontWeight: 500,
+                                fontSize: 13,
+                                color: "#999999",
+                            }}
+                        >
                             Already have account?
-                            <a
+                            <Link
                                 style={{ textDecoration: "none" }}
                                 className="button-login"
-                                href="../auth-page/login.html"
+                                to="/login"
                             >
                                 Log in Here
-                            </a>
+                            </Link>
                         </h1>
                     </div>
                 </div>
@@ -161,9 +168,9 @@ export default function RegistPage() {
                     <div className="popup__content">
                         <h1>Account has been set up</h1>
                         <p>Account activated successfully, please login</p>
-                        <a href="../auth-page/login.html" className="btn-popUp">
+                        <Link to="/login" className="btn-popUp">
                             Ok
-                        </a>
+                        </Link>
                         <a
                             style={{
                                 width: "fit-content",

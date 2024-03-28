@@ -6,28 +6,23 @@
     font-style: normal;
 }
 
-body {
-    width: 99vw;
-    height: 100vh;
-}
-
-.main {
+.main-landingPage {
     margin-left: 70px;
 }
 
-.navbar {
+.navbar-landingPage {
     display: flex;
     justify-content: space-between;
 }
 
-.nav-left {
+.nav-left-landingPage {
     display: flex;
     justify-content: space-between;
     width: 30%;
     height: 100%;
     padding-top: 30px;
 }
-.register-nav {
+.register-nav-landingPage {
     font-size: 18px;
     font-weight: 500;
     line-height: 27px;
@@ -41,7 +36,7 @@ body {
     color: #1a144b;
 }
 
-.login-nav {
+.login-nav-landingPage {
     font-size: 18px;
     font-weight: 500;
     line-height: 27px;
@@ -53,7 +48,7 @@ body {
     color: #1a144b;
 }
 
-.search-menu-nav {
+.search-menu-nav-landingPage {
     font-size: 18px;
     font-weight: 500;
     line-height: 27px;
@@ -65,7 +60,7 @@ body {
     color: #1a144b;
 }
 
-.nav-rigth {
+.nav-rigth-landingPage {
     width: 514px;
     height: 1210px;
     display: flex;
@@ -76,14 +71,14 @@ body {
     background-color: #efc81a;
 }
 
-.section {
+.section-landingPage {
     height: 80vh;
     margin-top: 40px;
     display: flex;
     align-items: center;
 }
 
-.aside {
+.aside-landingPage {
     width: 90%;
     height: 1328px;
     margin-top: 120px;
@@ -92,7 +87,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
-.aside2 {
+.aside2-landingPage {
     width: 90%;
     height: 1328px;
     margin-top: 120px;
@@ -101,14 +96,14 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
-.aside3 {
+.aside3-landingPage {
     width: 90%;
     height: 1328px;
     margin-top: 120px;
     margin-left: 10px;
 }
 
-.grid-container {
+.grid-container-landingPage {
     display: grid;
     grid-template-columns: auto auto auto;
     padding: 10px;
@@ -117,7 +112,7 @@ body {
     row-gap: 30px;
 }
 
-.grid-item {
+.grid-item-landingPage {
     display: flex;
     justify-content: start;
     align-items: end;
@@ -128,7 +123,7 @@ body {
     cursor: pointer;
 }
 
-.grid-item h1 {
+.grid-item-landingPage h1 {
     padding-left: 30px;
     padding-bottom: 30px;
     font-size: 32px;
@@ -136,12 +131,12 @@ body {
     line-height: 48px;
     color: #3f3a3a;
 }
-.grid-item:hover {
+.grid-item-landingPage:hover {
     border: 2px solid #efc81a;
     border-radius: 17px;
 }
 
-.card-aside {
+.card-aside-landingPage {
     display: flex;
     justify-content: space-between;
 }

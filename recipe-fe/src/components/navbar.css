@@ -5,8 +5,9 @@
 .navbar {
     display: flex;
     justify-content: space-between;
-    margin-left: 35px;
-    margin-right: 35px;
+    margin-left: 7vh;
+    margin-right: 7vh;
+    margin-top: 1vh;
 }
 
 .nav-left {
@@ -16,7 +17,12 @@
     height: 100%;
     padding-top: 30px;
 }
-.register-nav {
+
+.nav-right {
+    height: 97px;
+}
+
+.home-nav {
     font-size: 18px;
     font-weight: 500;
     line-height: 27px;
@@ -28,6 +34,7 @@
 .search-register-nav:hover,
 .search-register-nav:focus {
     color: #1a144b;
+    text-decoration: underline;
 }
 
 .login-nav {
@@ -52,4 +59,10 @@
 .search-menu-nav:hover,
 .search-menu-nav:focus {
     color: #1a144b;
+}
+
+.nav-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

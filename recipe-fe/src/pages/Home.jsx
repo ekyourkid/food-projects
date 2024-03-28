@@ -4,10 +4,12 @@ import "./home.css";
 import pempek from "../assets/pempek.png";
 import karen from "../assets/karen.png";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
     return (
         <>
+            <Navbar />
             <main className="home-main">
                 <div className="line1" />
                 <div className="line2" />
