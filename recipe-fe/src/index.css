@@ -1,8 +1,2 @@
-.rect {
-    position: absolute;
-    width: 514px;
-    height: 1210px;
-    right: 0px;
-    top: 0px;
-    z-index: -1;
+.root {
 }
