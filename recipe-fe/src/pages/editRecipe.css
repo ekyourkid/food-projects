@@ -13,6 +13,13 @@ li {
 input[type="file"] {
     display: none;
 }
+.textArea-control-editRecipe {
+    border: none;
+}
+
+.textArea-control-editRecipe:hover {
+    border: 2px solid #7c7771;
+}
 
 .labelEdit {
     display: flex;

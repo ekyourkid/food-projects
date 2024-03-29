@@ -32,14 +32,15 @@ label:active {
     border: 2px solid #7c7771;
 }
 
-input:hover {
+.form-control-addRecipe {
+    border: none;
+}
+
+.form-control-addRecipe:hover {
     border: 2px solid #7c7771;
 }
-textarea:hover {
-    border: 2px solid #7c7771;
-}
-select:hover {
-    border: 2px solid #7c7771;
+.textArea-control-addRecipe {
+    border: none;
 }
 
 .main-add {

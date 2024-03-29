@@ -2,9 +2,13 @@
 import React from "react";
 import "./editProfile.css";
 import editPhoto from "../assets/user-edit.png";
+import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
+
 export default function EditProfile() {
     return (
         <>
+            <Navbar />
             <main className="main-editProfile">
                 <section className="section-edit-profile">
                     <div
@@ -75,12 +79,9 @@ export default function EditProfile() {
                                 placeholder="Ayudia@gmail.com"
                             />
                         </div>
-                        <a
-                            href="./editProfile.html"
-                            className="btn-update-profile"
-                        >
+                        <Link to="/editProfile" className="btn-update-profile">
                             Update Profile
-                        </a>
+                        </Link>
                         <span className="forgot-sect-editProfile">
                             <h1
                                 style={{
@@ -90,12 +91,12 @@ export default function EditProfile() {
                                 }}
                             >
                                 Change Password?
-                                <a
+                                <Link
                                     className="forgot-button"
-                                    href="../profile/changePassword.html"
+                                    to="/changePassword"
                                 >
                                     Click here
-                                </a>
+                                </Link>
                             </h1>
                         </span>
                     </div>

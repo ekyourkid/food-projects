@@ -2,15 +2,23 @@
 import React from "react";
 import "./addRecipe.css";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 export default function AddRecipe() {
     return (
         <>
+            <Navbar />
             <main className="main-add">
                 <div className="main-div-add">
                     <section className="section-add">
                         <input type="file" id="inputFile" />
-                        <label htmlFor="inputFile">Add Photo</label>
+                        <label
+                            style={{ backgroundColor: "#F6F5F4" }}
+                            htmlFor="inputFile"
+                        >
+                            Add Photo
+                        </label>
                         <input
                             style={{
                                 width: 1300,
@@ -19,9 +27,11 @@ export default function AddRecipe() {
                                 paddingLeft: 50,
                                 fontSize: 24,
                                 fontWeight: 500,
+                                backgroundColor: "#F6F5F4",
+                                cursor: "pointer",
                             }}
                             type="text"
-                            className="form-control"
+                            className="form-control-addRecipe"
                             id="exampleInputEmail1"
                             placeholder="Title"
                         />
@@ -33,9 +43,10 @@ export default function AddRecipe() {
                                 paddingLeft: 50,
                                 paddingTop: 40,
                                 fontSize: 24,
+                                backgroundColor: "#F6F5F4",
                                 fontWeight: 500,
                             }}
-                            className="form-control"
+                            className="textArea-control-addRecipe"
                             id="exampleFormControlTextarea1"
                             rows={3}
                             placeholder="Ingredients"
@@ -48,6 +59,7 @@ export default function AddRecipe() {
                                 fontSize: 24,
                                 fontWeight: 500,
                                 color: "#666666",
+                                backgroundColor: "#F6F5F4",
                                 cursor: "pointer",
                             }}
                             className="form-select form-select-lg mb-3"
@@ -59,8 +71,8 @@ export default function AddRecipe() {
                             <option value={3}>Vegetarian</option>
                             <option value={4}>Popular</option>
                         </select>
-                        <a
-                            href="../profile/detailProfile.html"
+                        <Link
+                            to="/home"
                             style={{
                                 display: "flex",
                                 justifyContent: "center",
@@ -68,7 +80,7 @@ export default function AddRecipe() {
                             }}
                         >
                             <button className="button-post-add">Post</button>
-                        </a>
+                        </Link>
                     </section>
                 </div>
             </main>

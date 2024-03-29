@@ -11,21 +11,21 @@ const Navbar = () => {
                 <Link to="/home" className="home-nav">
                     Home
                 </Link>
-                <Link to="/login" className="register-nav">
-                    Login
+                <Link to="/addRecipe" className="addRecipe-nav">
+                    Add Recipe
                 </Link>
-                <Link to="/search" className="register-nav">
+                <Link to="/search" className="searchMenu-nav">
                     Search Menu
                 </Link>
             </div>
             <div className="nav-rigth">
-                <span className="nav-photo">
+                <Link to="/editProfile" className="nav-photo">
                     <img
                         style={{ marginLeft: 20, width: 64, height: 64 }}
                         src={userPhoto}
                         alt="user-photo"
                     />
-                </span>
+                </Link>
                 <span className="nav-text">
                     <h1
                         style={{
@@ -37,7 +37,7 @@ const Navbar = () => {
                         Ayudia
                     </h1>
                     <a
-                        href="#"
+                        href="#modal-navbar"
                         style={{
                             textDecoration: "none",
                             color: "black",
@@ -49,6 +49,30 @@ const Navbar = () => {
                         Logout
                     </a>
                 </span>
+            </div>
+            {/* POP UP LOGOUT */}
+            <div className="popup-navbar" id="modal-navbar">
+                <div className="popup-content-navbar">
+                    <p
+                        style={{
+                            fontWeight: 900,
+                            fontSize: 30,
+                            marginTop: 50,
+                        }}
+                    >
+                        You want to logout?
+                    </p>
+                    <Link to="/login" className="btn-popup-navbar">
+                        Yes
+                    </Link>
+                    <a
+                        style={{ backgroundColor: "#e7e7e7", marginTop: 20 }}
+                        href="#"
+                        className="close-popup-navbar"
+                    >
+                        Cancel
+                    </a>
+                </div>
             </div>
         </nav>
     );

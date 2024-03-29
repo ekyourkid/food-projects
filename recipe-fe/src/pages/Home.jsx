@@ -5,6 +5,7 @@ import pempek from "../assets/pempek.png";
 import karen from "../assets/karen.png";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 export default function Home() {
     return (
@@ -13,65 +14,6 @@ export default function Home() {
             <main className="home-main">
                 <div className="line1" />
                 <div className="line2" />
-                {/* <nav className="navbar">
-                    <div className="nav-left">
-                        <a href="./searchMenu.html" className="register-nav">
-                            {" "}
-                            Home{" "}
-                        </a>
-                        <a
-                            href="./addRecipe.html"
-                            style={{ textDecoration: "none" }}
-                            className="login-nav"
-                        >
-                            Add Recipe
-                        </a>
-                        <a
-                            href="#"
-                            style={{ textDecoration: "none" }}
-                            className="search-menu-nav"
-                        >
-                            Search Menu
-                        </a>
-                    </div>
-                    <div className="nav-rigth">
-                        <a
-                            href="../profile/detailProfile.html"
-                            className="nav-photo"
-                        >
-                            <img
-                                style={{
-                                    marginLeft: 20,
-                                    width: 64,
-                                    height: 64,
-                                }}
-                                src="../asset/user.png"
-                                alt="user-photo"
-                            />
-                        </a>
-                        <span className="nav-text">
-                            <h1
-                                style={{
-                                    fontSize: 24,
-                                    fontWeight: 500,
-                                    color: "#000000",
-                                }}
-                            >
-                                Ayudia
-                            </h1>
-                            <h1
-                                style={{
-                                    fontSize: 24,
-                                    fontWeight: 900,
-                                    marginTop: "-40px",
-                                    color: "#000000",
-                                }}
-                            >
-                                Logout
-                            </h1>
-                        </span>
-                    </div>
-                </nav> */}
                 <section className="section-home">
                     <div className="section-heroText-home">
                         <h1
@@ -87,7 +29,7 @@ export default function Home() {
                     <div className="section-search-home">
                         <input
                             type="search"
-                            className="form-control"
+                            className="form-control-home"
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                             placeholder="Telur Gulung"
@@ -109,7 +51,7 @@ export default function Home() {
                         </button>
                     </div>
                 </section>
-                <a href="./detailMenu.html" className="aside-home">
+                <Link to="/detailRecipe" className="aside-home">
                     <div className="aside-img-container">
                         <img
                             src={pempek}
@@ -175,8 +117,8 @@ export default function Home() {
                             </h1>
                         </span>
                     </div>
-                </a>
-                <a href="./detailMenu.html" className="aside-home">
+                </Link>
+                <Link to="/detailRecipe" className="aside-home">
                     <div className="aside-img-container">
                         <img
                             src={pempek}
@@ -242,8 +184,8 @@ export default function Home() {
                             </h1>
                         </span>
                     </div>
-                </a>
-                <a href="./detailMenu.html" className="aside-home">
+                </Link>
+                <Link to="/detailRecipe" className="aside-home">
                     <div className="aside-img-container">
                         <img
                             src={pempek}
@@ -309,8 +251,8 @@ export default function Home() {
                             </h1>
                         </span>
                     </div>
-                </a>
-                <a href="./detailMenu.html" className="aside-home">
+                </Link>
+                <Link to="/detailRecipe" className="aside-home">
                     <div className="aside-img-container">
                         <img
                             src={pempek}
@@ -376,8 +318,8 @@ export default function Home() {
                             </h1>
                         </span>
                     </div>
-                </a>
-                <a href="./detailMenu.html" className="aside-home">
+                </Link>
+                <Link to="/detailRecipe" className="aside-home">
                     <div className="aside-img-container">
                         <img
                             src={pempek}
@@ -443,7 +385,7 @@ export default function Home() {
                             </h1>
                         </span>
                     </div>
-                </a>
+                </Link>
                 <article className="article">
                     <h1
                         style={{

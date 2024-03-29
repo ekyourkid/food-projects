@@ -95,34 +95,6 @@ export default function ChangePassword() {
                         </span>
                     </div>
                 </section>
-                {/* POP UP LOGOUT*/}
-                {/* <div className="popup" id="modal">
-                    <div className="popup__content">
-                        <h1
-                            style={{
-                                fontWeight: 700,
-                                fontSize: 30,
-                                lineHeight: 45,
-                                color: "#efc81a",
-                            }}
-                        >
-                            Password has been updated
-                        </h1>
-                        <p
-                            style={{
-                                fontWeight: 900,
-                                fontSize: 18,
-                                lineHeight: 29,
-                                marginTop: 50,
-                            }}
-                        >
-                            please login again
-                        </p>
-                        <a href="../auth-page/login.html" className="btn-popUp">
-                            Ok
-                        </a>
-                    </div>
-                </div> */}
                 {/* POP UP CHANGE PASSWORD */}
                 <div className="popup-pass" id="modal-pass">
                     <div className="popup-pass-content">

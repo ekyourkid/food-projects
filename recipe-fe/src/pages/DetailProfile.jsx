@@ -4,15 +4,18 @@ import "./detailProfile.css";
 import userPhoto from "../assets/user.png";
 import pempek from "../assets/pempek.png";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 export default function DetailProfile() {
     return (
         <>
+            <Navbar />
             <main className="main-detail-profile">
                 <div className="main-div-detail-profile">
                     <section className="section-detail-profile">
                         <div className="nav-rigth-detail-profile">
-                            <a
+                            <span
                                 href="./editProfile.html"
                                 className="nav-photo-detail-profile"
                             >
@@ -25,7 +28,7 @@ export default function DetailProfile() {
                                     src={userPhoto}
                                     alt="user-photo"
                                 />
-                            </a>
+                            </span>
                             <span className="nav-text-detail-profile">
                                 <h1
                                     style={{
@@ -38,12 +41,12 @@ export default function DetailProfile() {
                                 </h1>
                                 <h1
                                     style={{
-                                        fontSize: 24,
+                                        fontSize: 20,
                                         fontWeight: 900,
                                         color: "#000000",
                                     }}
                                 >
-                                    Logout
+                                    10 Recipes
                                 </h1>
                             </span>
                         </div>
@@ -68,27 +71,27 @@ export default function DetailProfile() {
                     </section>
                     <aside className="aside-detail-profile">
                         <nav className="nav-detail-profile">
-                            <a
+                            <Link
                                 style={{ color: "#3f3a3a" }}
                                 className="nav-link-detail-profile"
                                 aria-current="page"
-                                href="../profile/detailProfile.html"
+                                to="/detailProfile"
                             >
                                 Recipes
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 className="nav-link-detail-profile"
-                                href="../profile/bookmarkProfile.html"
+                                to="/bookmarkProfile"
                             >
                                 Bookmarked
-                            </a>
-                            <a className="nav-link-detail-profile" href="#">
+                            </Link>
+                            <Link className="nav-link-detail-profile" to="#">
                                 Liked
-                            </a>
+                            </Link>
                         </nav>
                         <div className="card-aside-detail-profile">
-                            <a
-                                href="../menu-page/detailMenu.html"
+                            <Link
+                                to="/detailRecipe"
                                 style={{ textDecoration: "none" }}
                             >
                                 <img
@@ -97,7 +100,7 @@ export default function DetailProfile() {
                                     height="500px"
                                     alt="pempek-photo"
                                 />
-                            </a>
+                            </Link>
                             <div className="">
                                 <span className="aside-text-detail-profile">
                                     <h1
@@ -148,20 +151,20 @@ export default function DetailProfile() {
                                         marginTop: 50,
                                     }}
                                 >
-                                    <a
+                                    <Link
                                         style={{
                                             textDecoration: "none",
                                             display: "flex",
                                             alignItems: "center",
                                             justifyContent: "center",
                                         }}
-                                        href="../menu-page/editMenu.html"
+                                        to="/editRecipe"
                                         className="btn-card-edit"
                                     >
                                         Edit Menu
-                                    </a>
+                                    </Link>
                                     <a
-                                        href="#"
+                                        href="#modal-deleteRecipe"
                                         style={{
                                             textDecoration: "none",
                                             display: "flex",
@@ -176,16 +179,19 @@ export default function DetailProfile() {
                             </div>
                         </div>
                         <div className="card-aside-detail-profile">
-                            <div className="">
+                            <Link
+                                to="/detailRecipe"
+                                style={{ textDecoration: "none" }}
+                            >
                                 <img
                                     src={pempek}
                                     width="500px"
                                     height="500px"
                                     alt="pempek-photo"
                                 />
-                            </div>
+                            </Link>
                             <div className="">
-                                <span className="aside-text">
+                                <span className="aside-text-detail-profile">
                                     <h1
                                         style={{
                                             fontWeight: 500,
@@ -234,148 +240,30 @@ export default function DetailProfile() {
                                         marginTop: 50,
                                     }}
                                 >
-                                    <button className="btn-card-edit">
+                                    <Link
+                                        style={{
+                                            textDecoration: "none",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
+                                        to="/editRecipe"
+                                        className="btn-card-edit"
+                                    >
                                         Edit Menu
-                                    </button>
-                                    <button className="btn-card-delete">
+                                    </Link>
+                                    <a
+                                        href="#"
+                                        style={{
+                                            textDecoration: "none",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
+                                        className="btn-card-delete"
+                                    >
                                         Delete Menu
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-                        <div className="card-aside-detail-profile">
-                            <div className="">
-                                <img
-                                    src={pempek}
-                                    width="500px"
-                                    height="500px"
-                                    alt="pempek-photo"
-                                />
-                            </div>
-                            <div className="">
-                                <span className="aside-text">
-                                    <h1
-                                        style={{
-                                            fontWeight: 500,
-                                            fontSize: 32,
-                                            width: 132,
-                                            height: 96,
-                                        }}
-                                    >
-                                        Bomb Chicken
-                                    </h1>
-                                    <p
-                                        style={{
-                                            width: 245,
-                                            fontSize: 24,
-                                            fontWeight: 500,
-                                            color: "#3f3a3a",
-                                            paddingTop: 10,
-                                        }}
-                                    >
-                                        Ingredients: chicken, dumpling wrap,
-                                        garlic, spring onion, soy sauce, black
-                                        sesame seed
-                                    </p>
-                                </span>
-                                <h1
-                                    style={{
-                                        backgroundColor: "#efc81a",
-                                        width: 325,
-                                        height: 42,
-                                        borderRadius: 6,
-                                        fontWeight: 500,
-                                        fontSize: 16,
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        color: "white",
-                                    }}
-                                >
-                                    10 Likes - 12 Comment - 3 Bookmark
-                                </h1>
-                                <span
-                                    style={{
-                                        width: 310,
-                                        display: "flex",
-                                        justifyContent: "space-between",
-                                        marginTop: 50,
-                                    }}
-                                >
-                                    <button className="btn-card-edit">
-                                        Edit Menu
-                                    </button>
-                                    <button className="btn-card-delete">
-                                        Delete Menu
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-                        <div className="card-aside-detail-profile">
-                            <div className="">
-                                <img
-                                    src={pempek}
-                                    width="500px"
-                                    height="500px"
-                                    alt="pempek-photo"
-                                />
-                            </div>
-                            <div className="">
-                                <span className="aside-text">
-                                    <h1
-                                        style={{
-                                            fontWeight: 500,
-                                            fontSize: 32,
-                                            width: 132,
-                                            height: 96,
-                                        }}
-                                    >
-                                        Bomb Chicken
-                                    </h1>
-                                    <p
-                                        style={{
-                                            width: 245,
-                                            fontSize: 24,
-                                            fontWeight: 500,
-                                            color: "#3f3a3a",
-                                            paddingTop: 10,
-                                        }}
-                                    >
-                                        Ingredients: chicken, dumpling wrap,
-                                        garlic, spring onion, soy sauce, black
-                                        sesame seed
-                                    </p>
-                                </span>
-                                <h1
-                                    style={{
-                                        backgroundColor: "#efc81a",
-                                        width: 325,
-                                        height: 42,
-                                        borderRadius: 6,
-                                        fontWeight: 500,
-                                        fontSize: 16,
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        color: "white",
-                                    }}
-                                >
-                                    10 Likes - 12 Comment - 3 Bookmark
-                                </h1>
-                                <span
-                                    style={{
-                                        width: 310,
-                                        display: "flex",
-                                        justifyContent: "space-between",
-                                        marginTop: 50,
-                                    }}
-                                >
-                                    <button className="btn-card-edit">
-                                        Edit Menu
-                                    </button>
-                                    <button className="btn-card-delete">
-                                        Delete Menu
-                                    </button>
+                                    </a>
                                 </span>
                             </div>
                         </div>
@@ -396,6 +284,35 @@ export default function DetailProfile() {
                             Show 6-10 from 10
                         </h1>
                     </article>
+                </div>
+                {/* POP UP DELETE */}
+                <div className="popup-detailProfile" id="modal-deleteRecipe">
+                    <div className="popup-content-detailProfile">
+                        <p
+                            style={{
+                                fontWeight: 900,
+                                fontSize: 30,
+                                marginTop: 50,
+                                textAlign: "center",
+                            }}
+                        >
+                            Are you sure <br />
+                            want to delete this recipe?
+                        </p>
+                        <Link to="/login" className="btn-popup-detaiProfile">
+                            Yes
+                        </Link>
+                        <a
+                            style={{
+                                backgroundColor: "#e7e7e7",
+                                marginTop: 20,
+                            }}
+                            href="#"
+                            className="close-popup-detailProfile"
+                        >
+                            Cancel
+                        </a>
+                    </div>
                 </div>
             </main>
             <Footer />

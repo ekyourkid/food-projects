@@ -4,9 +4,12 @@ import "./bookmarkProfile.css";
 import userPhoto from "../assets/user.png";
 import pempek from "../assets/pempek.png";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 export default function BookmarkProfile() {
     return (
         <>
+            <Navbar />
             <main className="main-bookmark">
                 <div className="main-div-bookmark">
                     <section className="section-bookmark">
@@ -34,12 +37,12 @@ export default function BookmarkProfile() {
                                 </h1>
                                 <h1
                                     style={{
-                                        fontSize: 24,
+                                        fontSize: 20,
                                         fontWeight: 900,
                                         color: "#000000",
                                     }}
                                 >
-                                    Logout
+                                    10 Recipes
                                 </h1>
                             </span>
                         </div>
@@ -64,27 +67,27 @@ export default function BookmarkProfile() {
                     </section>
                     <aside className="aside-bookmark">
                         <nav className="nav-bookmark">
-                            <a
+                            <Link
                                 className="nav-link"
                                 aria-current="page"
-                                href="../profile/detailProfile.html"
+                                to="/detailProfile"
                             >
                                 Recipes
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 style={{ color: "#3f3a3a" }}
                                 className="nav-link"
-                                href="../profile/bookmarkProfile.html"
+                                to="/bookmarkProfile"
                             >
                                 Bookmarked
-                            </a>
-                            <a className="nav-link" href="#">
+                            </Link>
+                            <Link className="nav-link" to="#">
                                 Liked
-                            </a>
+                            </Link>
                         </nav>
                         <div className="card-aside-bookmark">
-                            <a
-                                href="../menu-page/detailMenu.html"
+                            <Link
+                                to="/detailRecipe"
                                 style={{ textDecoration: "none" }}
                             >
                                 <img
@@ -93,7 +96,7 @@ export default function BookmarkProfile() {
                                     height="500px"
                                     alt="pempek-photo"
                                 />
-                            </a>
+                            </Link>
                             <div className="">
                                 <span className="aside-text-bookmark">
                                     <h1
@@ -136,29 +139,34 @@ export default function BookmarkProfile() {
                                 >
                                     10 Likes - 12 Comment - 3 Bookmark
                                 </h1>
-                                <span
+                                <a
+                                    href="#modal-bookmarkProfile"
                                     style={{
                                         width: 310,
                                         display: "flex",
                                         justifyContent: "space-between",
                                         marginTop: 50,
+                                        textDecoration: "none",
                                     }}
                                 >
                                     <button className="btn-card-delete-bookmark">
                                         Delete From Bookmark
                                     </button>
-                                </span>
+                                </a>
                             </div>
                         </div>
                         <div className="card-aside-bookmark">
-                            <div className="">
+                            <Link
+                                to="/detailRecipe"
+                                style={{ textDecoration: "none" }}
+                            >
                                 <img
                                     src={pempek}
                                     width="500px"
                                     height="500px"
                                     alt="pempek-photo"
                                 />
-                            </div>
+                            </Link>
                             <div className="">
                                 <span className="aside-text-bookmark">
                                     <h1
@@ -201,18 +209,20 @@ export default function BookmarkProfile() {
                                 >
                                     10 Likes - 12 Comment - 3 Bookmark
                                 </h1>
-                                <span
+                                <a
+                                    href="#modal-bookmarkProfile"
                                     style={{
                                         width: 310,
                                         display: "flex",
                                         justifyContent: "space-between",
+                                        textDecoration: "none",
                                         marginTop: 50,
                                     }}
                                 >
                                     <button className="btn-card-delete-bookmark">
                                         Delete From Bookmark
                                     </button>
-                                </span>
+                                </a>
                             </div>
                         </div>
                     </aside>
@@ -230,6 +240,38 @@ export default function BookmarkProfile() {
                             Show 6-10 from 10
                         </h1>
                     </article>
+                </div>
+                {/* POP UP DELETE FROM BOOKMARK */}
+                <div
+                    className="popup-bookmarkProfile"
+                    id="modal-bookmarkProfile"
+                >
+                    <div className="popup-content-bookmarkProfile">
+                        <p
+                            style={{
+                                fontWeight: 900,
+                                fontSize: 30,
+                                marginTop: 50,
+                                textAlign: "center",
+                            }}
+                        >
+                            Are you sure want to <br />
+                            delete this from your bookmarks?
+                        </p>
+                        <Link to="/login" className="btn-popup-bookmarkProfile">
+                            Yes
+                        </Link>
+                        <a
+                            style={{
+                                backgroundColor: "#e7e7e7",
+                                marginTop: 20,
+                            }}
+                            href="#"
+                            className="close-popup-bookmarkProfile"
+                        >
+                            Cancel
+                        </a>
+                    </div>
                 </div>
             </main>
             <Footer />

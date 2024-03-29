@@ -1,19 +1,22 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import "./detailCard.css";
+import "./detailRecipe.css";
 import eggSendwich from "../assets/egg.png";
 import userPhoto from "../assets/user.png";
 import markahIcon from "../assets/bookmark.png";
 import likeIcon from "../assets/like.png";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 export default function DetailRecipe() {
     return (
         <>
+            <Navbar />
             <main className="main-detail-card">
                 <div className="main-div-detail">
                     <section className="section-detail">
-                        <div className="nav-right-detail">
+                        <Link to="/detailProfile" className="nav-right-detail">
                             <span className="nav-photo-detail">
                                 <img
                                     style={{
@@ -37,15 +40,15 @@ export default function DetailRecipe() {
                                 </h1>
                                 <h1
                                     style={{
-                                        fontSize: 24,
+                                        fontSize: 20,
                                         fontWeight: 900,
                                         color: "#000000",
                                     }}
                                 >
-                                    Logout
+                                    10 Recipes
                                 </h1>
                             </span>
-                        </div>
+                        </Link>
                         <div
                             style={{
                                 display: "flex",

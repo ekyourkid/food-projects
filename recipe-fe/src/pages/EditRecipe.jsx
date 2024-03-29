@@ -1,11 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import "./editRecipe.css";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 export default function EditRecipe() {
     return (
         <>
+            <Navbar />
             <main className="main-edit">
                 <div className="main-div-edit">
                     <section className="section-edit">
@@ -42,24 +45,22 @@ export default function EditRecipe() {
                             id="exampleInputEmail1"
                             placeholder="Egg Sandwich"
                         />
-                        <div
-                            style={{
-                                width: 1300,
-                                height: 380,
-                                border: "1px solid rgb(236, 235, 235)",
-                                borderRadius: 15,
-                                paddingLeft: 50,
-                                paddingTop: 40,
-                                fontSize: 24,
-                                fontWeight: 500,
-                            }}
-                        >
-                            <ul style={{ listStyleType: "none" }}>
-                                <li>- 2 eggs</li>
-                                <li>- 2 tbsp mayonnaise</li>
-                                <li>- 3 slices bread</li>
-                                <li>- a little butter</li>
-                            </ul>
+                        <div style={{}}>
+                            <textarea
+                                style={{
+                                    width: 1300,
+                                    height: 380,
+                                    borderRadius: 15,
+                                    paddingLeft: 50,
+                                    paddingTop: 40,
+                                    fontSize: 24,
+                                    fontWeight: 400,
+                                }}
+                                className="textArea-control-editRecipe"
+                                id="exampleFormControlTextarea1"
+                                rows={3}
+                                placeholder="- 2 eggs"
+                            />
                         </div>
                         <select
                             style={{
@@ -75,14 +76,16 @@ export default function EditRecipe() {
                         >
                             <option value={1}>Main Course</option>
                         </select>
-                        <div
+                        <Link
+                            to="/detailProfile"
                             style={{
                                 display: "flex",
                                 justifyContent: "center",
+                                textDecoration: "none",
                             }}
                         >
                             <button className="button-post">Update</button>
-                        </div>
+                        </Link>
                     </section>
                 </div>
             </main>
