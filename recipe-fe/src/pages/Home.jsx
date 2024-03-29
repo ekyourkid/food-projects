@@ -1,13 +1,29 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
 import "./home.css";
-import pempek from "../assets/pempek.png";
-import karen from "../assets/karen.png";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+
+const base_url = import.meta.env.VITE_BASE_URL;
 
 export default function Home() {
+    const [data, setData] = useState([]);
+
+    const getDataRecipes = async () => {
+        try {
+            let recipeData = await axios.get(`${base_url}/recipes`);
+            console.log(recipeData.data.data);
+            setData(recipeData.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    useEffect(() => {
+        getDataRecipes();
+    }, []);
+
     return (
         <>
             <Navbar />
@@ -51,341 +67,92 @@ export default function Home() {
                         </button>
                     </div>
                 </section>
-                <Link to="/detailRecipe" className="aside-home">
-                    <div className="aside-img-container">
-                        <img
-                            src={pempek}
-                            width="500px"
-                            height="500px"
-                            alt="pempek-photo"
-                        />
-                    </div>
-                    <div className="aside-text-container-home">
-                        <span className="aside-text">
-                            <h1
-                                style={{
-                                    fontWeight: 500,
-                                    fontSize: 32,
-                                    width: 132,
-                                    height: 96,
-                                }}
-                            >
-                                Bomb Chicken
-                            </h1>
-                            <p
-                                style={{
-                                    width: 245,
-                                    fontSize: 24,
-                                    fontWeight: 500,
-                                    color: "#3f3a3a",
-                                    paddingTop: 10,
-                                }}
-                            >
-                                Ingredients: chicken, dumpling wrap, garlic,
-                                spring onion, soy sauce, black sesame seed
-                            </p>
-                        </span>
-                        <h1
-                            style={{
-                                backgroundColor: "#efc81a",
-                                width: 325,
-                                height: 42,
-                                borderRadius: 6,
-                                fontWeight: 500,
-                                fontSize: 16,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                            }}
-                        >
-                            10 Likes - 12 Comment - 3 Bookmark
-                        </h1>
-                        <span style={{ display: "flex", marginTop: 25 }}>
-                            <img
-                                src={karen}
-                                width="68px"
-                                height="65px"
-                                alt="karen-photo"
-                            />
-                            <h1
-                                style={{
-                                    fontWeight: 500,
-                                    fontSize: 24,
-                                }}
-                            >
-                                Karen
-                            </h1>
-                        </span>
-                    </div>
-                </Link>
-                <Link to="/detailRecipe" className="aside-home">
-                    <div className="aside-img-container">
-                        <img
-                            src={pempek}
-                            width="500px"
-                            height="500px"
-                            alt="pempek-photo"
-                        />
-                    </div>
-                    <div className="aside-text-container">
-                        <span className="aside-text">
-                            <h1
-                                style={{
-                                    fontWeight: 500,
-                                    fontSize: 32,
-                                    width: 132,
-                                    height: 96,
-                                }}
-                            >
-                                Bomb Chicken
-                            </h1>
-                            <p
-                                style={{
-                                    width: 245,
-                                    fontSize: 24,
-                                    fontWeight: 500,
-                                    color: "#3f3a3a",
-                                    paddingTop: 10,
-                                }}
-                            >
-                                Ingredients: chicken, dumpling wrap, garlic,
-                                spring onion, soy sauce, black sesame seed
-                            </p>
-                        </span>
-                        <h1
-                            style={{
-                                backgroundColor: "#efc81a",
-                                width: 325,
-                                height: 42,
-                                borderRadius: 6,
-                                fontWeight: 500,
-                                fontSize: 16,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                            }}
-                        >
-                            10 Likes - 12 Comment - 3 Bookmark
-                        </h1>
-                        <span style={{ display: "flex", marginTop: 25 }}>
-                            <img
-                                src={karen}
-                                width="68px"
-                                height="65px"
-                                alt="karen-photo"
-                            />
-                            <h1
-                                style={{
-                                    fontWeight: 500,
-                                    fontSize: 24,
-                                }}
-                            >
-                                Karen
-                            </h1>
-                        </span>
-                    </div>
-                </Link>
-                <Link to="/detailRecipe" className="aside-home">
-                    <div className="aside-img-container">
-                        <img
-                            src={pempek}
-                            width="500px"
-                            height="500px"
-                            alt="pempek-photo"
-                        />
-                    </div>
-                    <div className="aside-text-container">
-                        <span className="aside-text">
-                            <h1
-                                style={{
-                                    fontWeight: 500,
-                                    fontSize: 32,
-                                    width: 132,
-                                    height: 96,
-                                }}
-                            >
-                                Bomb Chicken
-                            </h1>
-                            <p
-                                style={{
-                                    width: 245,
-                                    fontSize: 24,
-                                    fontWeight: 500,
-                                    color: "#3f3a3a",
-                                    paddingTop: 10,
-                                }}
-                            >
-                                Ingredients: chicken, dumpling wrap, garlic,
-                                spring onion, soy sauce, black sesame seed
-                            </p>
-                        </span>
-                        <h1
-                            style={{
-                                backgroundColor: "#efc81a",
-                                width: 325,
-                                height: 42,
-                                borderRadius: 6,
-                                fontWeight: 500,
-                                fontSize: 16,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                            }}
-                        >
-                            10 Likes - 12 Comment - 3 Bookmark
-                        </h1>
-                        <span style={{ display: "flex", marginTop: 25 }}>
-                            <img
-                                src={karen}
-                                width="68px"
-                                height="65px"
-                                alt="karen-photo"
-                            />
-                            <h1
-                                style={{
-                                    fontWeight: 500,
-                                    fontSize: 24,
-                                }}
-                            >
-                                Karen
-                            </h1>
-                        </span>
-                    </div>
-                </Link>
-                <Link to="/detailRecipe" className="aside-home">
-                    <div className="aside-img-container">
-                        <img
-                            src={pempek}
-                            width="500px"
-                            height="500px"
-                            alt="pempek-photo"
-                        />
-                    </div>
-                    <div className="aside-text-container">
-                        <span className="aside-text">
-                            <h1
-                                style={{
-                                    fontWeight: 500,
-                                    fontSize: 32,
-                                    width: 132,
-                                    height: 96,
-                                }}
-                            >
-                                Bomb Chicken
-                            </h1>
-                            <p
-                                style={{
-                                    width: 245,
-                                    fontSize: 24,
-                                    fontWeight: 500,
-                                    color: "#3f3a3a",
-                                    paddingTop: 10,
-                                }}
-                            >
-                                Ingredients: chicken, dumpling wrap, garlic,
-                                spring onion, soy sauce, black sesame seed
-                            </p>
-                        </span>
-                        <h1
-                            style={{
-                                backgroundColor: "#efc81a",
-                                width: 325,
-                                height: 42,
-                                borderRadius: 6,
-                                fontWeight: 500,
-                                fontSize: 16,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                            }}
-                        >
-                            10 Likes - 12 Comment - 3 Bookmark
-                        </h1>
-                        <span style={{ display: "flex", marginTop: 25 }}>
-                            <img
-                                src={karen}
-                                width="68px"
-                                height="65px"
-                                alt="karen-photo"
-                            />
-                            <h1
-                                style={{
-                                    fontWeight: 500,
-                                    fontSize: 24,
-                                }}
-                            >
-                                Karen
-                            </h1>
-                        </span>
-                    </div>
-                </Link>
-                <Link to="/detailRecipe" className="aside-home">
-                    <div className="aside-img-container">
-                        <img
-                            src={pempek}
-                            width="500px"
-                            height="500px"
-                            alt="pempek-photo"
-                        />
-                    </div>
-                    <div className="aside-text-container">
-                        <span className="aside-text">
-                            <h1
-                                style={{
-                                    fontWeight: 500,
-                                    fontSize: 32,
-                                    width: 132,
-                                    height: 96,
-                                }}
-                            >
-                                Bomb Chicken
-                            </h1>
-                            <p
-                                style={{
-                                    width: 245,
-                                    fontSize: 24,
-                                    fontWeight: 500,
-                                    color: "#3f3a3a",
-                                    paddingTop: 10,
-                                }}
-                            >
-                                Ingredients: chicken, dumpling wrap, garlic,
-                                spring onion, soy sauce, black sesame seed
-                            </p>
-                        </span>
-                        <h1
-                            style={{
-                                backgroundColor: "#efc81a",
-                                width: 325,
-                                height: 42,
-                                borderRadius: 6,
-                                fontWeight: 500,
-                                fontSize: 16,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                            }}
-                        >
-                            10 Likes - 12 Comment - 3 Bookmark
-                        </h1>
-                        <span style={{ display: "flex", marginTop: 25 }}>
-                            <img
-                                src={karen}
-                                width="68px"
-                                height="65px"
-                                alt="karen-photo"
-                            />
-                            <h1
-                                style={{
-                                    fontWeight: 500,
-                                    fontSize: 24,
-                                }}
-                            >
-                                Karen
-                            </h1>
-                        </span>
-                    </div>
-                </Link>
+                {data.length
+                    ? data.map((item, index) => (
+                          <Link
+                              key={index}
+                              to="/detailRecipe"
+                              className="aside-home"
+                          >
+                              <div className="aside-img-container">
+                                  <img
+                                      src={item.photo}
+                                      width="500px"
+                                      height="500px"
+                                      alt="pempek-photo"
+                                      className="image-recipe"
+                                  />
+                                  <div className="overlay-image">
+                                      <div className="text-image">
+                                          Check Detail
+                                      </div>
+                                  </div>
+                              </div>
+                              <div className="aside-text-container-home">
+                                  <span className="aside-text">
+                                      <h1
+                                          style={{
+                                              fontWeight: 500,
+                                              fontSize: 32,
+                                              width: "auto",
+                                              height: 96,
+                                          }}
+                                      >
+                                          {item.title}
+                                      </h1>
+                                      <h1 style={{ fontSize: 24 }}>
+                                          Ingredients:
+                                      </h1>
+                                      <p
+                                          style={{
+                                              width: "200px",
+                                              fontSize: 24,
+                                              fontWeight: 500,
+                                              color: "#3f3a3a",
+                                              paddingTop: 10,
+                                              display: "block",
+                                          }}
+                                      >
+                                          {item.ingredient}
+                                      </p>
+                                  </span>
+                                  <h1
+                                      style={{
+                                          backgroundColor: "#efc81a",
+                                          width: 325,
+                                          height: 42,
+                                          borderRadius: 6,
+                                          fontWeight: 500,
+                                          fontSize: 16,
+                                          display: "flex",
+                                          justifyContent: "center",
+                                          alignItems: "center",
+                                      }}
+                                  >
+                                      10 Likes - 12 Comment - 3 Bookmark
+                                  </h1>
+                                  <span
+                                      style={{ display: "flex", marginTop: 25 }}
+                                  >
+                                      <img
+                                          src={item.photo}
+                                          width="68px"
+                                          height="65px"
+                                          alt="karen-photo"
+                                      />
+                                      <h1
+                                          style={{
+                                              fontWeight: 500,
+                                              fontSize: 24,
+                                          }}
+                                      >
+                                          Karen
+                                      </h1>
+                                  </span>
+                              </div>
+                          </Link>
+                      ))
+                    : null}
                 <article className="article">
                     <h1
                         style={{

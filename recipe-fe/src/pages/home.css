@@ -9,7 +9,6 @@
 .line1 {
     background-color: #efc81a;
     width: 66.93px;
-    height: 1210px;
     position: absolute;
     z-index: 1;
     right: 1px;
@@ -18,7 +17,6 @@
 .line2 {
     background-color: #efc81a;
     width: 66.93px;
-    height: 1210px;
     position: absolute;
     z-index: 1;
     right: 1px;
@@ -140,25 +138,39 @@
     justify-content: center;
     margin-top: 120px;
 }
-
-.footer {
-    margin-top: 15vh;
-    width: 99vw;
-    height: 685px;
-    background-color: #efc81a;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    justify-content: space-between;
+.aside-img-container {
+    position: relative;
 }
 
-.footer-text {
-    margin-top: 30vh;
+.image-recipe {
+    border-radius: 15px;
+    display: block;
 }
 
-.footer-text-end {
-    display: flex;
-    justify-content: end;
+.aside-img-container:hover .overlay-image {
+    opacity: 0.5;
+}
+
+.overlay-image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
     width: 100%;
+    opacity: 0;
+    transition: 0.5s ease;
+    background-color: #000000;
+    border-radius: 15px;
+}
+.text-image {
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
