@@ -71,7 +71,7 @@ export default function Home() {
                     ? data.map((item, index) => (
                           <Link
                               key={index}
-                              to="/detailRecipe"
+                              to={`/detailRecipe/${item.id}`}
                               className="aside-home"
                           >
                               <div className="aside-img-container">

@@ -31,9 +31,12 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/forgotPassword" element={<ForgoPassword />} />
                     <Route path="/home" element={<Home />} />
-                    <Route path="/detailRecipe" element={<DetailRecipe />} />
+                    <Route
+                        path="/detailRecipe/:id"
+                        element={<DetailRecipe />}
+                    />
                     <Route path="/addRecipe" element={<AddRecipe />} />
-                    <Route path="/editRecipe" element={<EditRecipe />} />
+                    <Route path="/editRecipe/:id" element={<EditRecipe />} />
                     <Route path="/detailProfile" element={<DetailProfile />} />
                     <Route
                         path="/bookmarkProfile"

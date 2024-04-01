@@ -1,15 +1,39 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import "./detailRecipe.css";
-import eggSendwich from "../assets/egg.png";
 import userPhoto from "../assets/user.png";
 import markahIcon from "../assets/bookmark.png";
 import likeIcon from "../assets/like.png";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
+const base_url = import.meta.env.VITE_BASE_URL;
 
 export default function DetailRecipe() {
+    const [data, setData] = useState(null);
+    const { id } = useParams();
+
+    async function getData() {
+        try {
+            let recipeData = await axios.get(`${base_url}/recipes/${id}`);
+            console.log(recipeData.data.data);
+            setData(recipeData.data.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    useEffect(() => {
+        getData();
+        console.log(id);
+    }, []);
+    useEffect(() => {
+        console.log(data);
+    }, [data]);
+
     return (
         <>
             <Navbar />
@@ -87,15 +111,16 @@ export default function DetailRecipe() {
                                 color: "#2e266f",
                             }}
                         >
-                            Egg Sandwich
+                            {data?.title}
                         </h1>
                         <img
                             style={{
                                 borderRadius: 15,
                                 color: "#c4c4c4",
                                 marginTop: 60,
+                                objectFit: "    ",
                             }}
-                            src={eggSendwich}
+                            src={data?.photo}
                             width="1082px"
                             height="700px"
                             alt="egg"
@@ -119,16 +144,9 @@ export default function DetailRecipe() {
                                 color: "#000000",
                             }}
                         >
-                            <li>- 2 eggs</li>
-                            <li>- 2 tbsp mayonnaise</li>
-                            <li>- 3 slices bread</li>
-                            <li>- a little butter</li>
-                            <li>- ⅓ carton of cress</li>
-                            <li>
-                                - 2-3 slices of tomato or a lettuce leaf and a
-                                slice of ham or cheese
+                            <li style={{ listStyle: "inside" }}>
+                                {data?.ingredient}
                             </li>
-                            <li>- crisps , to serve</li>
                         </ul>
                     </article>
                     <article className="article2-detail">

@@ -2,12 +2,57 @@
 import React from "react";
 import "./detailProfile.css";
 import userPhoto from "../assets/user.png";
-import pempek from "../assets/pempek.png";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+const base_url = import.meta.env.VITE_BASE_URL;
+const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZjNTZjYWMzLWI4ZTAtNGQ4Mi1iYjUwLTA5OTMzMDYwNThiMiIsInVzZXJuYW1lIjoidGVzdDYiLCJhZGRyZXNzIjoiamFnYWthcnNhIiwiaWF0IjoxNzExNzQyNDkwLCJleHAiOjE3MTE4Mjg4OTB9.zDIEwy1cmG4ejicqdrQYkI1wa34WfgN-Jx5ijH6fxZA";
 
 export default function DetailProfile() {
+    const [data, setData] = useState([]);
+    const { id } = useParams();
+
+    const getDataRecipes = async () => {
+        try {
+            let recipeData = await axios.get(`${base_url}/recipes`);
+            console.log(recipeData.data.data);
+            setData(recipeData.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    async function deleteRecipes(id) {
+        try {
+            if (
+                window.confirm("Are you sure you want to delete this recipe?")
+            ) {
+                await axios.delete(`${base_url}/recipes/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                console.log("Data berhasil dihapus");
+                window.location.reload(true);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        getDataRecipes();
+    }, [id]);
+
+    const handleButtonClick = () => {
+        window.scrollTo(0, 0);
+    };
+
     return (
         <>
             <Navbar />
@@ -89,184 +134,144 @@ export default function DetailProfile() {
                                 Liked
                             </Link>
                         </nav>
-                        <div className="card-aside-detail-profile">
-                            <Link
-                                to="/detailRecipe"
-                                style={{ textDecoration: "none" }}
-                            >
-                                <img
-                                    src={pempek}
-                                    width="500px"
-                                    height="500px"
-                                    alt="pempek-photo"
-                                />
-                            </Link>
-                            <div className="">
-                                <span className="aside-text-detail-profile">
-                                    <h1
-                                        style={{
-                                            fontWeight: 500,
-                                            fontSize: 32,
-                                            width: 132,
-                                            height: 96,
-                                        }}
-                                    >
-                                        Bomb Chicken
-                                    </h1>
-                                    <p
-                                        style={{
-                                            width: 245,
-                                            fontSize: 24,
-                                            fontWeight: 500,
-                                            color: "#3f3a3a",
-                                            paddingTop: 10,
-                                        }}
-                                    >
-                                        Ingredients: chicken, dumpling wrap,
-                                        garlic, spring onion, soy sauce, black
-                                        sesame seed
-                                    </p>
-                                </span>
-                                <h1
-                                    style={{
-                                        backgroundColor: "#efc81a",
-                                        width: 325,
-                                        height: 42,
-                                        borderRadius: 6,
-                                        fontWeight: 500,
-                                        fontSize: 16,
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        color: "white",
-                                    }}
-                                >
-                                    10 Likes - 12 Comment - 3 Bookmark
-                                </h1>
-                                <span
-                                    style={{
-                                        width: 310,
-                                        display: "flex",
-                                        justifyContent: "space-between",
-                                        marginTop: 50,
-                                    }}
-                                >
-                                    <Link
-                                        style={{
-                                            textDecoration: "none",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                        }}
-                                        to="/editRecipe"
-                                        className="btn-card-edit"
-                                    >
-                                        Edit Menu
-                                    </Link>
-                                    <a
-                                        href="#modal-deleteRecipe"
-                                        style={{
-                                            textDecoration: "none",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                        }}
-                                        className="btn-card-delete"
-                                    >
-                                        Delete Menu
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                        <div className="card-aside-detail-profile">
-                            <Link
-                                to="/detailRecipe"
-                                style={{ textDecoration: "none" }}
-                            >
-                                <img
-                                    src={pempek}
-                                    width="500px"
-                                    height="500px"
-                                    alt="pempek-photo"
-                                />
-                            </Link>
-                            <div className="">
-                                <span className="aside-text-detail-profile">
-                                    <h1
-                                        style={{
-                                            fontWeight: 500,
-                                            fontSize: 32,
-                                            width: 132,
-                                            height: 96,
-                                        }}
-                                    >
-                                        Bomb Chicken
-                                    </h1>
-                                    <p
-                                        style={{
-                                            width: 245,
-                                            fontSize: 24,
-                                            fontWeight: 500,
-                                            color: "#3f3a3a",
-                                            paddingTop: 10,
-                                        }}
-                                    >
-                                        Ingredients: chicken, dumpling wrap,
-                                        garlic, spring onion, soy sauce, black
-                                        sesame seed
-                                    </p>
-                                </span>
-                                <h1
-                                    style={{
-                                        backgroundColor: "#efc81a",
-                                        width: 325,
-                                        height: 42,
-                                        borderRadius: 6,
-                                        fontWeight: 500,
-                                        fontSize: 16,
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        color: "white",
-                                    }}
-                                >
-                                    10 Likes - 12 Comment - 3 Bookmark
-                                </h1>
-                                <span
-                                    style={{
-                                        width: 310,
-                                        display: "flex",
-                                        justifyContent: "space-between",
-                                        marginTop: 50,
-                                    }}
-                                >
-                                    <Link
-                                        style={{
-                                            textDecoration: "none",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                        }}
-                                        to="/editRecipe"
-                                        className="btn-card-edit"
-                                    >
-                                        Edit Menu
-                                    </Link>
-                                    <a
-                                        href="#"
-                                        style={{
-                                            textDecoration: "none",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                        }}
-                                        className="btn-card-delete"
-                                    >
-                                        Delete Menu
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
+                        {data.length
+                            ? data.map((item, index) => (
+                                  <div
+                                      key={index}
+                                      className="card-aside-detail-profile"
+                                  >
+                                      <Link
+                                          to="/detailRecipe"
+                                          style={{ textDecoration: "none" }}
+                                      >
+                                          <img
+                                              src={item.photo}
+                                              width="500px"
+                                              height="500px"
+                                              alt="pempek-photo"
+                                          />
+                                      </Link>
+                                      <div className="">
+                                          <span className="aside-text-detail-profile">
+                                              <h1
+                                                  style={{
+                                                      fontWeight: 500,
+                                                      fontSize: 32,
+                                                      width: 132,
+                                                      height: 96,
+                                                  }}
+                                              >
+                                                  {item.title}
+                                              </h1>
+                                              <p
+                                                  style={{
+                                                      width: 245,
+                                                      fontSize: 24,
+                                                      fontWeight: 500,
+                                                      color: "#3f3a3a",
+                                                      paddingTop: 10,
+                                                  }}
+                                              >
+                                                  {item.ingredient}
+                                              </p>
+                                          </span>
+                                          <h1
+                                              style={{
+                                                  backgroundColor: "#efc81a",
+                                                  width: 325,
+                                                  height: 42,
+                                                  borderRadius: 6,
+                                                  fontWeight: 500,
+                                                  fontSize: 16,
+                                                  display: "flex",
+                                                  justifyContent: "center",
+                                                  alignItems: "center",
+                                                  color: "white",
+                                              }}
+                                          >
+                                              10 Likes - 12 Comment - 3 Bookmark
+                                          </h1>
+                                          <span
+                                              style={{
+                                                  width: 310,
+                                                  display: "flex",
+                                                  justifyContent:
+                                                      "space-between",
+                                                  marginTop: 50,
+                                              }}
+                                          >
+                                              <Link
+                                                  onClick={handleButtonClick}
+                                                  style={{
+                                                      textDecoration: "none",
+                                                      display: "flex",
+                                                      alignItems: "center",
+                                                      justifyContent: "center",
+                                                  }}
+                                                  to={`/editRecipe/${item.id}`}
+                                                  className="btn-card-edit"
+                                              >
+                                                  Edit Menu
+                                              </Link>
+                                              <button
+                                                  //   href="#modal-deleteRecipe"
+                                                  onClick={() =>
+                                                      deleteRecipes(item.id)
+                                                  }
+                                                  style={{
+                                                      textDecoration: "none",
+                                                      display: "flex",
+                                                      alignItems: "center",
+                                                      justifyContent: "center",
+                                                  }}
+                                                  className="btn-card-delete"
+                                              >
+                                                  Delete Menu
+                                              </button>
+                                          </span>
+                                      </div>
+                                      {/* POP UP DELETE */}
+                                      {/* <div
+                                          className="popup-detailProfile"
+                                          id="modal-deleteRecipe"
+                                      >
+                                          <div className="popup-content-detailProfile">
+                                              <p
+                                                  style={{
+                                                      fontWeight: 900,
+                                                      fontSize: 30,
+                                                      marginTop: 50,
+                                                      textAlign: "center",
+                                                  }}
+                                              >
+                                                  Are you sure <br />
+                                                  want to delete this recipe?
+                                              </p>
+                                              <Link
+                                                  onClick={() =>
+                                                      deleteRecipes(item.id)
+                                                  }
+                                                  to="/detailProfile"
+                                                  className="btn-popup-detaiProfile"
+                                              >
+                                                  Yes
+                                              </Link>
+                                              <a
+                                                  style={{
+                                                      backgroundColor:
+                                                          "#e7e7e7",
+                                                      marginTop: 20,
+                                                  }}
+                                                  href="#"
+                                                  className="close-popup-detailProfile"
+                                              >
+                                                  Cancel
+                                              </a>
+                                          </div>
+                                      </div> */}
+                                  </div>
+                              ))
+                            : null}
                     </aside>
                     <article className="article-detail-profile">
                         <button className="btn-article-detail-profile">
@@ -284,35 +289,6 @@ export default function DetailProfile() {
                             Show 6-10 from 10
                         </h1>
                     </article>
-                </div>
-                {/* POP UP DELETE */}
-                <div className="popup-detailProfile" id="modal-deleteRecipe">
-                    <div className="popup-content-detailProfile">
-                        <p
-                            style={{
-                                fontWeight: 900,
-                                fontSize: 30,
-                                marginTop: 50,
-                                textAlign: "center",
-                            }}
-                        >
-                            Are you sure <br />
-                            want to delete this recipe?
-                        </p>
-                        <Link to="/login" className="btn-popup-detaiProfile">
-                            Yes
-                        </Link>
-                        <a
-                            style={{
-                                backgroundColor: "#e7e7e7",
-                                marginTop: 20,
-                            }}
-                            href="#"
-                            className="close-popup-detailProfile"
-                        >
-                            Cancel
-                        </a>
-                    </div>
                 </div>
             </main>
             <Footer />

@@ -2,8 +2,37 @@
 import React from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
+// import axios from axios;
+// import { useState, useEffect } from "react";
+
+// const base_url = import.meta.env.VITE_BASE_URL
 
 export default function LoginPage() {
+    // const [ token, setToken ] = useState( null )
+
+    // useEffect( () =>
+    // {
+    //     let getToken = localStorage.getItem( 'token' )
+    //     setToken(getToken)
+    // }, [ localStorage ] )
+
+    // const login = () =>
+    // {
+    //     axios.post( base_url + "/users/login", {
+    //         email: 'test6@gmail.com',
+    //         password: 'test6'
+    //     }, {
+    //         headers: {
+    //             'Content-Type':"application/x-www-form-urlencoded"
+    //         },
+    //     } ).then( ( res ) =>
+    //     {
+    //         console.log( 'Success Login' )
+    //         console.log( res.data.token )
+
+    //     })
+    // }
+
     return (
         <main className="login-main">
             <div className="cover-main">

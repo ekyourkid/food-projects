@@ -36,7 +36,6 @@ input[type="file"] {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    background-image: url(../assets/egg.png);
 }
 
 .labelEdit:hover,
@@ -163,4 +162,21 @@ select:hover {
 }
 .button-comment:focus {
     background-color: #f37600;
+}
+
+.image-editRecipe {
+    justify-content: center;
+    align-items: center;
+    width: 906px;
+    height: 480px;
+    border: 2px solid #f6f5f4;
+    font-size: 24px;
+    font-weight: 500;
+    color: #666666;
+    border-radius: 15px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    object-fit: cover;
 }
