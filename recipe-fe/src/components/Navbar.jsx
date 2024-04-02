@@ -3,15 +3,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 import userPhoto from "../assets/user.png";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const authdata = useSelector((state) => state.auth);
+
+    const logout = () => {
+        localStorage;
+        navigate("/login");
+    };
+
     return (
         <nav className="navbar">
             <div className="nav-left">
                 <Link to="/home" className="home-nav">
                     Home
                 </Link>
-                <Link to="/addRecipe" className="addRecipe-nav">
+                <Link to="/addRecipe" refresh="true" className="addRecipe-nav">
                     Add Recipe
                 </Link>
                 <Link to="/search" className="searchMenu-nav">
@@ -36,22 +46,24 @@ const Navbar = () => {
                     >
                         Ayudia
                     </h1>
-                    <a
-                        href="#modal-navbar"
-                        style={{
-                            textDecoration: "none",
-                            color: "black",
-                            fontWeight: 900,
-                            fontSize: 24,
-                        }}
-                        className="btn-nav-logout"
-                    >
-                        Logout
-                    </a>
+                    {authdata ? (
+                        <button
+                            onClick={() => logout()}
+                            style={{
+                                textDecoration: "none",
+                                color: "black",
+                                fontWeight: 900,
+                                fontSize: 24,
+                            }}
+                            className="btn-nav-logout"
+                        >
+                            Logout
+                        </button>
+                    ) : null}
                 </span>
             </div>
             {/* POP UP LOGOUT */}
-            <div className="popup-navbar" id="modal-navbar">
+            {/* <div className="popup-navbar" id="modal-navbar">
                 <div className="popup-content-navbar">
                     <p
                         style={{
@@ -73,7 +85,7 @@ const Navbar = () => {
                         Cancel
                     </a>
                 </div>
-            </div>
+            </div> */}
         </nav>
     );
 };

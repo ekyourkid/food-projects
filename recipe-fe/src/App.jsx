@@ -15,6 +15,7 @@ import DetailProfile from "./pages/DetailProfile";
 import BookmarkProfile from "./pages/BookmarkProfile";
 import EditProfile from "./pages/EditProfile";
 import ChangePassword from "./pages/ChangePassword";
+import Auth from "./components/Auth";
 // import { Axios } from "axios";
 
 function App() {
@@ -35,7 +36,14 @@ function App() {
                         path="/detailRecipe/:id"
                         element={<DetailRecipe />}
                     />
-                    <Route path="/addRecipe" element={<AddRecipe />} />
+                    <Route
+                        path="/addRecipe"
+                        element={
+                            <Auth>
+                                <AddRecipe />
+                            </Auth>
+                        }
+                    />
                     <Route path="/editRecipe/:id" element={<EditRecipe />} />
                     <Route path="/detailProfile" element={<DetailProfile />} />
                     <Route

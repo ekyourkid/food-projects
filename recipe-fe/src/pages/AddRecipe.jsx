@@ -3,16 +3,15 @@ import React from "react";
 import "./addRecipe.css";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-// import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
-const base_url = import.meta.env.VITE_BASE_URL;
-const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZjNTZjYWMzLWI4ZTAtNGQ4Mi1iYjUwLTA5OTMzMDYwNThiMiIsInVzZXJuYW1lIjoidGVzdDYiLCJhZGRyZXNzIjoiamFnYWthcnNhIiwiaWF0IjoxNzExNzQyNDkwLCJleHAiOjE3MTE4Mjg4OTB9.zDIEwy1cmG4ejicqdrQYkI1wa34WfgN-Jx5ijH6fxZA";
+import { postRecipe } from "../redux/action/recipes";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function AddRecipe() {
+    const dispatch = useDispatch();
+    const recipes_post = useSelector((state) => state.recipes_post);
     const navigate = useNavigate();
     const [photo, setPhoto] = useState();
     const [inputData, setInputData] = useState({
@@ -25,28 +24,12 @@ export default function AddRecipe() {
     const postData = (event) => {
         event.preventDefault();
         let bodyData = new FormData();
-
         bodyData.append("title", inputData.title);
         bodyData.append("ingredient", inputData.ingridient);
         bodyData.append("category_id", inputData.category_id);
         bodyData.append("photo", photo);
 
-        axios
-            .post(base_url + "/recipes", bodyData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "multipart/form-data",
-                },
-            })
-            .then((res) => {
-                console.log("success");
-                console.log(res);
-                navigate("/home");
-            })
-            .catch((err) => {
-                console.log("failed");
-                console.log(err);
-            });
+        dispatch(postRecipe(bodyData, navigate));
     };
     const onChange = (e) => {
         setInputData({ ...inputData, [e.target?.id]: e.target.value });
@@ -67,6 +50,10 @@ export default function AddRecipe() {
         };
     };
     console.log(inputData);
+
+    useEffect(() => {
+        dispatch({ type: "POST_RECIPE_RESET" });
+    }, []);
 
     return (
         <>
@@ -162,6 +149,19 @@ export default function AddRecipe() {
                         </button>
                     </form>
                 </div>
+
+                {recipes_post.isError ? (
+                    <div className="alert alert-danger">
+                        {" "}
+                        create new recipe failed :
+                        {recipes_post.ErrorMessage ?? "-"}
+                    </div>
+                ) : null}
+                {recipes_post.isLoading ? (
+                    <div className="alert alert-primary" style={{ margin: 20 }}>
+                        Please Wait for loading data ...
+                    </div>
+                ) : null}
             </main>
             <Footer />
         </>

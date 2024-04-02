@@ -2,36 +2,31 @@
 import React from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
-// import axios from axios;
-// import { useState, useEffect } from "react";
-
-// const base_url = import.meta.env.VITE_BASE_URL
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { authLogin } from "../redux/action/auth";
+import { useSelector } from "react-redux";
 
 export default function LoginPage() {
-    // const [ token, setToken ] = useState( null )
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const authData = useSelector((state) => state.auth);
+    const [inputData, setInputData] = useState({
+        email: "",
+        password: "",
+    });
+    const onChange = (e) => {
+        setInputData({ ...inputData, [e.target?.name]: e.target.value });
+    };
 
-    // useEffect( () =>
-    // {
-    //     let getToken = localStorage.getItem( 'token' )
-    //     setToken(getToken)
-    // }, [ localStorage ] )
-
-    // const login = () =>
-    // {
-    //     axios.post( base_url + "/users/login", {
-    //         email: 'test6@gmail.com',
-    //         password: 'test6'
-    //     }, {
-    //         headers: {
-    //             'Content-Type':"application/x-www-form-urlencoded"
-    //         },
-    //     } ).then( ( res ) =>
-    //     {
-    //         console.log( 'Success Login' )
-    //         console.log( res.data.token )
-
-    //     })
-    // }
+    const postData = (event) => {
+        event.preventDefault();
+        let data = inputData;
+        console.log("inputData");
+        dispatch(authLogin(data, navigate));
+    };
+    console.log(inputData);
 
     return (
         <main className="login-main">
@@ -75,13 +70,14 @@ export default function LoginPage() {
                     </span>
                 </div>
                 <hr width="427px" style={{ marginLeft: 80 }} />
-                <div
+                <form
                     style={{
                         marginTop: 15,
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
                     }}
+                    onSubmit={postData}
                 >
                     <div className="mb-3">
                         <h1
@@ -90,16 +86,19 @@ export default function LoginPage() {
                                 fontSize: 16,
                                 color: "#696f79",
                             }}
-                            htmlFor="exampleFormControlInput1"
+                            htmlFor="email"
                             className="form-label"
                         >
                             Email
                         </h1>
                         <input
                             type="email"
-                            className="form-control"
                             id="exampleFormControlInput1"
+                            className="form-control"
                             placeholder="Enter email address"
+                            onChange={onChange}
+                            required
+                            name="email"
                         />
                     </div>
                     <div className="mb-3">
@@ -109,7 +108,7 @@ export default function LoginPage() {
                                 fontSize: 16,
                                 color: "#696f79",
                             }}
-                            htmlFor="exampleFormControlInput1"
+                            htmlFor="password"
                             className="form-label"
                         >
                             Password
@@ -117,32 +116,31 @@ export default function LoginPage() {
                         <input
                             type="password"
                             className="form-control"
-                            id="exampleFormControlInput1"
+                            id="exampleFormControlInput2"
                             placeholder="Password"
+                            onChange={onChange}
+                            required
+                            name="password"
                         />
                     </div>
-                </div>
-                <div className="form-check">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="flexCheckDefault"
-                    />
-                    <h1 className="form-check-label" htmlFor="flexCheckDefault">
-                        I agree to terms &amp; conditions
-                    </h1>
-                </div>
-                <Link
-                    to="/home"
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        textDecoration: "none",
-                    }}
-                >
-                    <button className="button-regist">Login</button>
-                </Link>
+                    {/* <div className="form-check">
+                        <input
+                            className="form-check-input"
+                            type="checkbox"
+                            defaultValue=""
+                            id="flexCheckDefault"
+                        />
+                        <h1
+                            className="form-check-label"
+                            htmlFor="flexCheckDefault"
+                        >
+                            I agree to terms &amp; conditions
+                        </h1>
+                    </div> */}
+                    <button type="submit" className="btn btn-primary">
+                        Submit
+                    </button>
+                </form>
                 <span className="forgot-sect">
                     <h1
                         style={{
@@ -187,6 +185,17 @@ export default function LoginPage() {
                     </h1>
                 </div>
             </div>
+            {authData.isError ? (
+                <div className="alert alert-danger">
+                    {" "}
+                    Login failed :{authData.ErrorMessage ?? "-"}
+                </div>
+            ) : null}
+            {authData.isLoading ? (
+                <div className="alert alert-primary" style={{ margin: 20 }}>
+                    Please Wait for loading data ...
+                </div>
+            ) : null}
         </main>
     );
 }

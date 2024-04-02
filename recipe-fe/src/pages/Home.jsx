@@ -3,27 +3,18 @@ import "./home.css";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { useState, useEffect } from "react";
-
-const base_url = import.meta.env.VITE_BASE_URL;
+// import axios from "axios";
+import { useEffect } from "react";
+import { getRecipe } from "../redux/action/recipes";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Home() {
-    const [data, setData] = useState([]);
+    const dispatch = useDispatch();
+    const recipe = useSelector((state) => state.recipes);
 
-    const getDataRecipes = async () => {
-        try {
-            let recipeData = await axios.get(`${base_url}/recipes`);
-            console.log(recipeData.data.data);
-            setData(recipeData.data.data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
     useEffect(() => {
-        getDataRecipes();
+        dispatch(getRecipe());
     }, []);
-
     return (
         <>
             <Navbar />
@@ -67,8 +58,13 @@ export default function Home() {
                         </button>
                     </div>
                 </section>
-                {data.length
-                    ? data.map((item, index) => (
+                {recipe.isLoading ? (
+                    <div className="alert alert-primary" style={{ margin: 20 }}>
+                        Please Wait for loading data ...
+                    </div>
+                ) : null}
+                {recipe.isSuccess && recipe.data
+                    ? recipe.data.map((item, index) => (
                           <Link
                               key={index}
                               to={`/detailRecipe/${item.id}`}
