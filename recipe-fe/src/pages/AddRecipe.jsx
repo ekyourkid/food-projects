@@ -17,7 +17,7 @@ export default function AddRecipe() {
     const [inputData, setInputData] = useState({
         title: "",
         ingridient: "",
-        category_id: 2,
+        category_id: "",
         photo_url: "",
     });
 
@@ -64,6 +64,7 @@ export default function AddRecipe() {
                         <input
                             type="file"
                             id="inputFile"
+                            name="inputFile"
                             required
                             onChange={onChangePhoto}
                         />
@@ -90,6 +91,7 @@ export default function AddRecipe() {
                             type="text"
                             className="form-control-addRecipe"
                             id="title"
+                            name="title"
                             placeholder="Title"
                             required
                             onChange={onChange}
@@ -108,14 +110,14 @@ export default function AddRecipe() {
                             }}
                             className="textArea-control-addRecipe"
                             id="ingridient"
+                            name="ingridient"
                             rows={3}
                             placeholder="Ingredients"
-                            defaultValue={""}
                             htmlFor="inputIngredients"
                             required
                             onChange={onChange}
                         />
-                        {/* <select
+                        <select
                             style={{
                                 width: 243,
                                 borderRadius: 15,
@@ -126,16 +128,18 @@ export default function AddRecipe() {
                                 cursor: "pointer",
                             }}
                             id="category_id"
+                            name="category_id"
                             className="form-select form-select-lg mb-3"
                             aria-label="Large select example"
                             htmlFor="inputCategory"
+                            required
+                            onChange={onChange}
                         >
-                            <option selected="">Category</option>
-                            <option value={1}>Main Course</option>
-                            <option value={2}>Breakfast</option>
-                            <option value={3}>Vegetarian</option>
-                            <option value={4}>Popular</option>
-                        </select> */}
+                            <option value="">Category</option>
+                            <option value="1">Main Course</option>
+                            <option value="2">Dessert</option>
+                            <option value="3">Appetizer</option>
+                        </select>
                         <button
                             type="submit"
                             style={{

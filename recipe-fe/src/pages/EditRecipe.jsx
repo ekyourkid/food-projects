@@ -3,43 +3,31 @@ import React from "react";
 import "./editRecipe.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-const base_url = import.meta.env.VITE_BASE_URL;
-const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZjNTZjYWMzLWI4ZTAtNGQ4Mi1iYjUwLTA5OTMzMDYwNThiMiIsInVzZXJuYW1lIjoidGVzdDYiLCJhZGRyZXNzIjoiamFnYWthcnNhIiwiaWF0IjoxNzExNzQyNDkwLCJleHAiOjE3MTE4Mjg4OTB9.zDIEwy1cmG4ejicqdrQYkI1wa34WfgN-Jx5ijH6fxZA";
+import { useDispatch, useSelector } from "react-redux";
+import { getRecipeDetail, updateRecipe } from "../redux/action/recipes";
 
 export default function EditRecipe() {
-    const [data, setData] = useState(null);
+    const recipeDetail = useSelector((state) => state.recipes_detail);
+    const recipeUpdate = useSelector((state) => state.recipes_update);
+    const dispatch = useDispatch();
     const { id } = useParams();
     const navigate = useNavigate();
     const [photo, setPhoto] = useState();
     const [inputData, setInputData] = useState({
         title: "",
         ingridient: "",
-        category_id: 2,
+        category_id: "",
         photo_url: "",
     });
 
-    async function getData() {
-        try {
-            let recipeData = await axios.get(`${base_url}/recipes/${id}`);
-            console.log(recipeData.data.data);
-            setData(recipeData.data.data);
-        } catch (err) {
-            console.log(err);
-        }
-    }
     useEffect(() => {
-        getData();
-        console.log(id);
+        dispatch(getRecipeDetail(id));
+        dispatch({ type: "UPDATE_RECIPE_RESET" });
     }, []);
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
+
     const updateData = (event) => {
         event.preventDefault();
         let bodyData = new FormData();
@@ -48,26 +36,10 @@ export default function EditRecipe() {
         bodyData.append("category_id", inputData.category_id);
         bodyData.append("photo", photo);
 
-        axios
-            .put(base_url + "/recipes/" + id, bodyData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "multipart/form-data",
-                },
-            })
-            .then((res) => {
-                console.log("success");
-                console.log(res);
-                navigate("/detailProfile");
-                window.scrollTo(0.0);
-            })
-            .catch((err) => {
-                console.log("failed");
-                console.log(err);
-            });
+        dispatch(updateRecipe(id, bodyData, navigate));
     };
     const onChange = (e) => {
-        setInputData({ ...inputData, [e.target?.id]: e.target.value });
+        setInputData({ ...inputData, [e.target.name]: e.target.value });
     };
     const onChangePhoto = (e) => {
         setPhoto(e.target.files[0]);
@@ -97,6 +69,7 @@ export default function EditRecipe() {
                         <input
                             type="file"
                             id="inputFile"
+                            name="inputFile"
                             onChange={onChangePhoto}
                         />
                         <label htmlFor="inputFile" className="labelEdit">
@@ -107,7 +80,7 @@ export default function EditRecipe() {
                                 />
                             ) : (
                                 <img
-                                    src={data?.photo}
+                                    src={recipeDetail.data?.photo}
                                     className="image-editRecipe"
                                 />
                             )}
@@ -141,8 +114,9 @@ export default function EditRecipe() {
                             type="text"
                             className="form-control"
                             id="title"
+                            name="title"
                             onChange={onChange}
-                            placeholder={data?.title}
+                            placeholder={recipeDetail.data?.title}
                         />
                         <div style={{}}>
                             <textarea
@@ -157,12 +131,16 @@ export default function EditRecipe() {
                                 }}
                                 className="textArea-control-editRecipe"
                                 id="ingridient"
+                                name="ingridient"
                                 rows={3}
-                                placeholder={data?.ingredient}
+                                placeholder={recipeDetail.data?.ingredient}
                                 onChange={onChange}
                             />
                         </div>
                         <select
+                            id="category_id"
+                            name="category_id"
+                            onChange={onChange}
                             style={{
                                 width: 243,
                                 borderRadius: 15,
@@ -171,14 +149,18 @@ export default function EditRecipe() {
                                 color: "#666666",
                                 cursor: "pointer",
                             }}
+                            value={
+                                inputData.category_id
+                                    ? inputData?.category_id
+                                    : recipeDetail.data?.category_id
+                            }
                             className="form-select form-select-lg mb-3"
                             aria-label="Large select example"
                         >
-                            <option value={data?.category_id}>
-                                main course
-                            </option>
-                            <option value={data?.category_id}>dessert</option>
-                            <option value={data?.category_id}>appetizer</option>
+                            <option value="">Select Category</option>
+                            <option value="1">main course</option>
+                            <option value="2">dessert</option>
+                            <option value="3">appetizer</option>
                         </select>
                         <div
                             style={{
@@ -197,6 +179,14 @@ export default function EditRecipe() {
                         </div>
                     </form>
                 </div>
+                {recipeUpdate.isLoading ? (
+                    <div className="alert alert-primary">Loading ...</div>
+                ) : null}
+                {recipeUpdate.isError ? (
+                    <div className="alert alert-danger">
+                        Update menu failed: {recipeUpdate.errorMessage ?? " - "}
+                    </div>
+                ) : null}
             </main>
             <Footer />
         </>

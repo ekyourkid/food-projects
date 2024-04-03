@@ -5,54 +5,22 @@ import userPhoto from "../assets/user.png";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { deleteRecipe, getRecipe } from "../redux/action/recipes";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const base_url = import.meta.env.VITE_BASE_URL;
-const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZjNTZjYWMzLWI4ZTAtNGQ4Mi1iYjUwLTA5OTMzMDYwNThiMiIsInVzZXJuYW1lIjoidGVzdDYiLCJhZGRyZXNzIjoiamFnYWthcnNhIiwiaWF0IjoxNzExNzQyNDkwLCJleHAiOjE3MTE4Mjg4OTB9.zDIEwy1cmG4ejicqdrQYkI1wa34WfgN-Jx5ijH6fxZA";
-
 export default function DetailProfile() {
-    const [data, setData] = useState([]);
+    const dispatch = useDispatch();
+    const recipes = useSelector((state) => state.recipes);
     const { id } = useParams();
 
-    const getDataRecipes = async () => {
-        try {
-            let recipeData = await axios.get(`${base_url}/recipes`);
-            console.log(recipeData.data.data);
-            setData(recipeData.data.data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    async function deleteRecipes(id) {
-        try {
-            if (
-                window.confirm("Are you sure you want to delete this recipe?")
-            ) {
-                await axios.delete(`${base_url}/recipes/${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                console.log("Data berhasil dihapus");
-                window.location.reload(true);
-            }
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
     useEffect(() => {
-        getDataRecipes();
-    }, [id]);
-
+        dispatch(getRecipe(id));
+    }, []);
     const handleButtonClick = () => {
         window.scrollTo(0, 0);
     };
-
     return (
         <>
             <Navbar />
@@ -134,14 +102,19 @@ export default function DetailProfile() {
                                 Liked
                             </Link>
                         </nav>
-                        {data.length
-                            ? data.map((item, index) => (
+                        {recipes.isLoading ? (
+                            <div className="alert alert-primary">
+                                Please wait ...
+                            </div>
+                        ) : null}
+                        {recipes.isSuccess && recipes.data
+                            ? recipes.data.map((item, index) => (
                                   <div
                                       key={index}
                                       className="card-aside-detail-profile"
                                   >
                                       <Link
-                                          to="/detailRecipe"
+                                          to={`/detailRecipe/${item.id}`}
                                           style={{ textDecoration: "none" }}
                                       >
                                           <img
@@ -149,6 +122,7 @@ export default function DetailProfile() {
                                               width="500px"
                                               height="500px"
                                               alt="pempek-photo"
+                                              style={{ borderRadius: 15 }}
                                           />
                                       </Link>
                                       <div className="">
@@ -214,9 +188,10 @@ export default function DetailProfile() {
                                                   Edit Menu
                                               </Link>
                                               <button
-                                                  //   href="#modal-deleteRecipe"
                                                   onClick={() =>
-                                                      deleteRecipes(item.id)
+                                                      dispatch(
+                                                          deleteRecipe(item.id)
+                                                      )
                                                   }
                                                   style={{
                                                       textDecoration: "none",
@@ -230,48 +205,48 @@ export default function DetailProfile() {
                                               </button>
                                           </span>
                                       </div>
-                                      {/* POP UP DELETE */}
-                                      {/* <div
-                                          className="popup-detailProfile"
-                                          id="modal-deleteRecipe"
-                                      >
-                                          <div className="popup-content-detailProfile">
-                                              <p
-                                                  style={{
-                                                      fontWeight: 900,
-                                                      fontSize: 30,
-                                                      marginTop: 50,
-                                                      textAlign: "center",
-                                                  }}
-                                              >
-                                                  Are you sure <br />
-                                                  want to delete this recipe?
-                                              </p>
-                                              <Link
-                                                  onClick={() =>
-                                                      deleteRecipes(item.id)
-                                                  }
-                                                  to="/detailProfile"
-                                                  className="btn-popup-detaiProfile"
-                                              >
-                                                  Yes
-                                              </Link>
-                                              <a
-                                                  style={{
-                                                      backgroundColor:
-                                                          "#e7e7e7",
-                                                      marginTop: 20,
-                                                  }}
-                                                  href="#"
-                                                  className="close-popup-detailProfile"
-                                              >
-                                                  Cancel
-                                              </a>
-                                          </div>
-                                      </div> */}
                                   </div>
                               ))
                             : null}
+                        {/* POP UP DELETE */}
+                        {/* <div
+                                          className="popup-detailProfile"
+                                          id="modal-deleteRecipe"
+                                      >
+                                      <div className="popup-content-detailProfile">
+                                      <p
+                                      style={{
+                                          fontWeight: 900,
+                                          fontSize: 30,
+                                          marginTop: 50,
+                                                      textAlign: "center",
+                                                    }}
+                                                    >
+                                                    Are you sure <br />
+                                                    want to delete this recipe?
+                                                    </p>
+                                                    <Link
+                                                  onClick={() =>
+                                                      deleteRecipes(item.id)
+                                                    }
+                                                    to="/detailProfile"
+                                                    className="btn-popup-detaiProfile"
+                                                    >
+                                                    Yes
+                                                    </Link>
+                                                    <a
+                                                    style={{
+                                                      backgroundColor:
+                                                      "#e7e7e7",
+                                                      marginTop: 20,
+                                                    }}
+                                                    href="#"
+                                                    className="close-popup-detailProfile"
+                                                    >
+                                                    Cancel
+                                                    </a>
+                                                    </div>
+                                                </div> */}
                     </aside>
                     <article className="article-detail-profile">
                         <button className="btn-article-detail-profile">

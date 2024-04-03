@@ -7,32 +7,19 @@ import likeIcon from "../assets/like.png";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-const base_url = import.meta.env.VITE_BASE_URL;
+import { useDispatch, useSelector } from "react-redux";
+import { getRecipeDetail } from "../redux/action/recipes";
 
 export default function DetailRecipe() {
-    const [data, setData] = useState(null);
+    const dispatch = useDispatch();
+    const recipes_detail = useSelector((state) => state.recipes_detail);
     const { id } = useParams();
 
-    async function getData() {
-        try {
-            let recipeData = await axios.get(`${base_url}/recipes/${id}`);
-            console.log(recipeData.data.data);
-            setData(recipeData.data.data);
-        } catch (err) {
-            console.log(err);
-        }
-    }
     useEffect(() => {
-        getData();
-        console.log(id);
+        dispatch(getRecipeDetail(id));
     }, []);
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
 
     return (
         <>
@@ -103,6 +90,13 @@ export default function DetailRecipe() {
                             </h1>
                         </div>
                     </section>
+                    {recipes_detail.isLoading ? (
+                        <div className="alert alert-primary">
+                            {" "}
+                            Please wait for detail recipe{" "}
+                        </div>
+                    ) : null}
+
                     <aside className="aside-detail">
                         <h1
                             style={{
@@ -111,7 +105,7 @@ export default function DetailRecipe() {
                                 color: "#2e266f",
                             }}
                         >
-                            {data?.title}
+                            {recipes_detail?.data?.title}
                         </h1>
                         <img
                             style={{
@@ -120,7 +114,7 @@ export default function DetailRecipe() {
                                 marginTop: 60,
                                 objectFit: "    ",
                             }}
-                            src={data?.photo}
+                            src={recipes_detail?.data?.photo}
                             width="1082px"
                             height="700px"
                             alt="egg"
@@ -145,10 +139,11 @@ export default function DetailRecipe() {
                             }}
                         >
                             <li style={{ listStyle: "inside" }}>
-                                {data?.ingredient}
+                                {recipes_detail?.data?.ingredient}
                             </li>
                         </ul>
                     </article>
+
                     <article className="article2-detail">
                         <div>
                             <button

@@ -353,7 +353,7 @@ export default function LandingPage() {
                     </div>
                 </aside>
             </main>
-            <Footer />
+            <Footer className="footer" />
         </>
     );
 }
