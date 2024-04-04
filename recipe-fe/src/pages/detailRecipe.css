@@ -41,6 +41,7 @@ li {
 .nav-text-detail {
     display: flex;
     flex-direction: column;
+    margin-left: 100;
 }
 
 .section-detail {

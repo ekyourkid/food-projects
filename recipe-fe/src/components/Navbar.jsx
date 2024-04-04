@@ -2,13 +2,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
-import userPhoto from "../assets/user.png";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const authdata = useSelector((state) => state.auth);
+    const authdata = useSelector((state) => state.auth.data);
 
     const logout = () => {
         localStorage;
@@ -18,43 +17,62 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="nav-left">
-                <Link to="/home" className="home-nav">
-                    Home
-                </Link>
-                <Link to="/addRecipe" refresh="true" className="addRecipe-nav">
-                    Add Recipe
-                </Link>
+                {authdata.data ? (
+                    <Link to="/home" className="home-nav">
+                        Home
+                    </Link>
+                ) : (
+                    <Link to="/register" className="home-nav">
+                        Register
+                    </Link>
+                )}
+                {authdata.data ? (
+                    <Link
+                        to="/addRecipe"
+                        refresh="true"
+                        className="addRecipe-nav"
+                    >
+                        Add Recipe
+                    </Link>
+                ) : (
+                    <Link to="/login" refresh="true" className="addRecipe-nav">
+                        Login
+                    </Link>
+                )}
                 <Link to="/search" className="searchMenu-nav">
                     Search Menu
                 </Link>
             </div>
             <div className="nav-rigth">
                 <Link to="/editProfile" className="nav-photo">
-                    <img
-                        style={{ marginLeft: 20, width: 64, height: 64 }}
-                        src={userPhoto}
-                        alt="user-photo"
-                    />
+                    {authdata ? (
+                        <img
+                            style={{
+                                marginLeft: 20,
+                                width: 64,
+                                height: 64,
+                                borderRadius: 50,
+                            }}
+                            src={authdata?.data?.photo_profile}
+                            alt="user-photo"
+                        />
+                    ) : null}
                 </Link>
                 <span className="nav-text">
-                    <h1
-                        style={{
-                            fontSize: 24,
-                            fontWeight: 500,
-                            color: "#000000",
-                        }}
-                    >
-                        Ayudia
-                    </h1>
+                    {authdata ? (
+                        <h1
+                            style={{
+                                fontSize: 20,
+                                fontWeight: 500,
+                                color: "#000000",
+                            }}
+                        >
+                            {authdata?.data?.username}
+                        </h1>
+                    ) : null}
                     {authdata ? (
                         <button
                             onClick={() => logout()}
-                            style={{
-                                textDecoration: "none",
-                                color: "black",
-                                fontWeight: 900,
-                                fontSize: 24,
-                            }}
                             className="btn-nav-logout"
                         >
                             Logout

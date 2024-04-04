@@ -75,6 +75,17 @@ export const getRecipeDetail = (id) => async (dispatch, getState) => {
     }
 };
 
+export const searchRecipe = (searchQuery) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: "GET_RECIPE_PENDING" });
+        const res = await axios.get(`${base_url}?q=${searchQuery}`);
+        dispatch({ type: "GET_RECIPE_SUCCESS", payload: res.data.data });
+    } catch (err) {
+        console.log(err?.message ? err.message : err);
+        dispatch({ type: "GET_RECIPE_ERROR" });
+    }
+};
+
 export const updateRecipe =
     (id, data, navigate) => async (dispatch, getState) => {
         try {

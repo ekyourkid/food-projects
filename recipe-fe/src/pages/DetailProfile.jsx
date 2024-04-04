@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import "./detailProfile.css";
-import userPhoto from "../assets/user.png";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
@@ -11,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 export default function DetailProfile() {
+    const authdata = useSelector((state) => state.auth.data);
     const dispatch = useDispatch();
     const recipes = useSelector((state) => state.recipes);
     const { id } = useParams();
@@ -32,30 +32,35 @@ export default function DetailProfile() {
                                 href="./editProfile.html"
                                 className="nav-photo-detail-profile"
                             >
-                                <img
-                                    style={{
-                                        marginLeft: 20,
-                                        width: 64,
-                                        height: 64,
-                                    }}
-                                    src={userPhoto}
-                                    alt="user-photo"
-                                />
+                                {authdata?.data ? (
+                                    <img
+                                        style={{
+                                            marginLeft: 20,
+                                            width: 64,
+                                            height: 64,
+                                            borderRadius: 40,
+                                        }}
+                                        src={authdata?.data?.photo_profile}
+                                        alt="user-photo"
+                                    />
+                                ) : null}
                             </span>
                             <span className="nav-text-detail-profile">
+                                {authdata?.data ? (
+                                    <h1
+                                        style={{
+                                            fontSize: 18,
+                                            fontWeight: 500,
+                                            color: "#000000",
+                                        }}
+                                    >
+                                        {authdata?.data?.username}
+                                    </h1>
+                                ) : null}
                                 <h1
                                     style={{
-                                        fontSize: 24,
-                                        fontWeight: 500,
-                                        color: "#000000",
-                                    }}
-                                >
-                                    Ayudia
-                                </h1>
-                                <h1
-                                    style={{
-                                        fontSize: 20,
-                                        fontWeight: 900,
+                                        fontSize: 19,
+                                        fontWeight: 800,
                                         color: "#000000",
                                     }}
                                 >

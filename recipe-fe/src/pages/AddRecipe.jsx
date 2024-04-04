@@ -145,6 +145,7 @@ export default function AddRecipe() {
                             style={{
                                 display: "flex",
                                 justifyContent: "center",
+                                alignItems: "center",
                                 textDecoration: "none",
                             }}
                             className="button-post-add"

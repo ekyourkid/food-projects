@@ -157,3 +157,16 @@
 .close-popup-navbar:active {
     color: #161414;
 }
+
+.btn-nav-logout {
+    background: transparent;
+    color: black;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 24px;
+    border: none;
+}
+
+.btn-nav-logout:hover {
+    color: red;
+}

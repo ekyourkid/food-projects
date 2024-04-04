@@ -1,11 +1,46 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import "./editProfile.css";
-import editPhoto from "../assets/user-edit.png";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+// import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+// import { updateUsers } from "../redux/action/users";
 
 export default function EditProfile() {
+    const authdata = useSelector((state) => state.auth.data);
+    // const dispatch = useDispatch();
+    // const usersUpdate = useSelector((state) => state.users_update);
+    // const navigate = useNavigate();
+    // const [inputData, setInputData] = useState({
+    //     username: "",
+    //     email: "",
+    // });
+
+    // useEffect(() => {
+    //     dispatch(authdata);
+    // dispatch({ type: "UPDATE_RECIPE_RESET" });
+    // }, []);
+
+    // const updateData = (event) => {
+    //     event.preventDefault();
+    //     let bodyData = new FormData();
+    //     bodyData.append("username", inputData.username);
+    //     bodyData.append("email", inputData.email);
+
+    //     dispatch(updateUsers(authdata, bodyData, navigate));
+    // };
+
+    // const onChange = (e) => {
+    //     setInputData({ ...inputData, [e.target.name]: e.target.value });
+    // };
+    // const handdleButtonClick = () => {
+    //     window.scrollTo(0, 0);
+    // };
+
+    // console.log(inputData);
+
     return (
         <>
             <Navbar />
@@ -19,13 +54,16 @@ export default function EditProfile() {
                             alignItems: "center",
                         }}
                     >
-                        <img
-                            src={editPhoto}
-                            width="280px"
-                            height="272px"
-                            alt="user-edit"
-                        />
-                        <input type="file" id="edit-profile" hidden="" />
+                        {authdata.data ? (
+                            <img
+                                src={authdata?.data?.photo_profile}
+                                width="280px"
+                                height="272px"
+                                alt="user-edit"
+                                style={{ borderRadius: 250 }}
+                            />
+                        ) : null}
+                        <input type="file" id="photo_profile" hidden="" />
                         <label
                             className="label-edit-profile"
                             htmlFor="edit-profile"
@@ -33,7 +71,8 @@ export default function EditProfile() {
                             Change Profile picture
                         </label>
                     </div>
-                    <div
+                    <form
+                        // onSubmit={updateData}
                         style={{
                             marginTop: 15,
                             display: "flex",
@@ -54,10 +93,12 @@ export default function EditProfile() {
                                 Name
                             </h1>
                             <input
+                                // onChange={onChange}
+                                id="username"
+                                name="username"
                                 type="text"
                                 className="form-control"
-                                id="exampleFormControlInput1"
-                                placeholder="Ayudia"
+                                placeholder={authdata?.data?.username}
                             />
                         </div>
                         <div className="mb-3">
@@ -73,15 +114,21 @@ export default function EditProfile() {
                                 Email
                             </h1>
                             <input
+                                // onChange={onChange}
+                                id="email"
+                                name="email"
                                 type="email"
                                 className="form-control"
-                                id="exampleFormControlInput1"
-                                placeholder="Ayudia@gmail.com"
+                                placeholder={authdata?.data?.email}
                             />
                         </div>
-                        <Link to="/editProfile" className="btn-update-profile">
+                        <button
+                            // onClick={handdleButtonClick}
+                            type="submit"
+                            className="btn-update-profile"
+                        >
                             Update Profile
-                        </Link>
+                        </button>
                         <span className="forgot-sect-editProfile">
                             <h1
                                 style={{
@@ -99,10 +146,10 @@ export default function EditProfile() {
                                 </Link>
                             </h1>
                         </span>
-                    </div>
+                    </form>
                 </section>
                 {/* POP UP */}
-                <div className="popup" id="modal">
+                {/* <div className="popup" id="modal">
                     <div className="popup__content">
                         <h1>You want to logout?</h1>
                         <a href="../auth-page/login.html" className="btn-popUp">
@@ -122,7 +169,15 @@ export default function EditProfile() {
                             cancel;
                         </a>
                     </div>
-                </div>
+                </div> */}
+                {/* {usersUpdate.isLoading ? (
+                    <div className="alert alert-primary">Loading ...</div>
+                ) : null}
+                {usersUpdate.isError ? (
+                    <div className="alert alert-danger">
+                        Update user failed: {usersUpdate.errorMessage ?? " - "}
+                    </div>
+                ) : null} */}
             </main>
         </>
     );

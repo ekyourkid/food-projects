@@ -4,17 +4,24 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 // import axios from "axios";
-import { useEffect } from "react";
-import { getRecipe } from "../redux/action/recipes";
+import { useEffect, useState } from "react";
+import { getRecipe, searchRecipe } from "../redux/action/recipes";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Home() {
+    const authdata = useSelector((state) => state.auth.data);
     const dispatch = useDispatch();
     const recipe = useSelector((state) => state.recipes);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSearch = () => {
+        dispatch(searchRecipe(searchQuery));
+    };
 
     useEffect(() => {
         dispatch(getRecipe());
     }, []);
+
     return (
         <>
             <Navbar />
@@ -40,8 +47,14 @@ export default function Home() {
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                             placeholder="Telur Gulung"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
                         />
-                        <button className="button-search-section-home">
+                        <button
+                            onClick={() => handleSearch()}
+                            type="submit"
+                            className="button-search-section-home"
+                        >
                             Search
                         </button>
                     </div>
@@ -128,22 +141,35 @@ export default function Home() {
                                       10 Likes - 12 Comment - 3 Bookmark
                                   </h1>
                                   <span
-                                      style={{ display: "flex", marginTop: 25 }}
+                                      style={{
+                                          display: "flex",
+                                          justifyContent: "space-between",
+                                          alignItems: "center",
+                                          width: 220,
+                                          marginTop: 125,
+                                      }}
                                   >
-                                      <img
-                                          src={item.photo}
-                                          width="68px"
-                                          height="65px"
-                                          alt="karen-photo"
-                                      />
-                                      <h1
-                                          style={{
-                                              fontWeight: 500,
-                                              fontSize: 24,
-                                          }}
-                                      >
-                                          Karen
-                                      </h1>
+                                      {authdata.data ? (
+                                          <img
+                                              src={
+                                                  authdata?.data?.photo_profile
+                                              }
+                                              width="68px"
+                                              height="65px"
+                                              alt="karen-photo"
+                                              style={{ borderRadius: 40 }}
+                                          />
+                                      ) : null}
+                                      {authdata.data ? (
+                                          <h1
+                                              style={{
+                                                  fontWeight: 500,
+                                                  fontSize: 24,
+                                              }}
+                                          >
+                                              {authdata?.data?.username}
+                                          </h1>
+                                      ) : null}
                                   </span>
                               </div>
                           </Link>

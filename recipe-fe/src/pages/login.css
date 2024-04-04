@@ -82,15 +82,18 @@ input:hover {
     background-color: #696f79;
 }
 
-.button-login {
+.btn-login {
+    width: 426px;
+    height: 64px;
     font-weight: 500;
     font-size: 13px;
-    color: #efc81a;
+    color: white;
     border: none;
-    background: transparent;
+    background-color: #efc81a;
+    border-radius: 6px;
 }
-.button-login:active {
-    color: #696f79;
+.btn-login:hover {
+    background-color: #696f79;
 }
 
 .forgot-sect {

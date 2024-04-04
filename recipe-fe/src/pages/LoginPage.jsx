@@ -137,7 +137,7 @@ export default function LoginPage() {
                             I agree to terms &amp; conditions
                         </h1>
                     </div> */}
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn-login">
                         Submit
                     </button>
                 </form>
@@ -184,18 +184,18 @@ export default function LoginPage() {
                         </Link>
                     </h1>
                 </div>
+                {authData.isError ? (
+                    <div className="alert alert-danger">
+                        {" "}
+                        Login failed :{authData.errorMessage ?? "-"}
+                    </div>
+                ) : null}
+                {authData.isLoading ? (
+                    <div className="alert alert-primary" style={{ margin: 20 }}>
+                        Please Wait for loading data ...
+                    </div>
+                ) : null}
             </div>
-            {authData.isError ? (
-                <div className="alert alert-danger">
-                    {" "}
-                    Login failed :{authData.ErrorMessage ?? "-"}
-                </div>
-            ) : null}
-            {authData.isLoading ? (
-                <div className="alert alert-primary" style={{ margin: 20 }}>
-                    Please Wait for loading data ...
-                </div>
-            ) : null}
         </main>
     );
 }

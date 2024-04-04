@@ -16,6 +16,7 @@ export default function DetailRecipe() {
     const dispatch = useDispatch();
     const recipes_detail = useSelector((state) => state.recipes_detail);
     const { id } = useParams();
+    const authdata = useSelector((state) => state.auth.data);
 
     useEffect(() => {
         dispatch(getRecipeDetail(id));
@@ -29,26 +30,31 @@ export default function DetailRecipe() {
                     <section className="section-detail">
                         <Link to="/detailProfile" className="nav-right-detail">
                             <span className="nav-photo-detail">
-                                <img
-                                    style={{
-                                        marginLeft: 20,
-                                        width: 64,
-                                        height: 64,
-                                    }}
-                                    src={userPhoto}
-                                    alt="user-photo"
-                                />
+                                {authdata.data ? (
+                                    <img
+                                        style={{
+                                            marginLeft: 20,
+                                            width: 64,
+                                            height: 64,
+                                            borderRadius: 30,
+                                        }}
+                                        src={authdata?.data?.photo_profile}
+                                        alt="user-photo"
+                                    />
+                                ) : null}
                             </span>
                             <span className="nav-text-detail">
-                                <h1
-                                    style={{
-                                        fontSize: 24,
-                                        fontWeight: 500,
-                                        color: "#000000",
-                                    }}
-                                >
-                                    Ayudia
-                                </h1>
+                                {authdata.data ? (
+                                    <h1
+                                        style={{
+                                            fontSize: 20,
+                                            fontWeight: 500,
+                                            color: "#000000",
+                                        }}
+                                    >
+                                        {authdata?.data?.username}
+                                    </h1>
+                                ) : null}
                                 <h1
                                     style={{
                                         fontSize: 20,
